@@ -3,58 +3,95 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-// use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Auth\User;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
-    // use RegistersUsers;
-
-    protected $redirectTo = '/home';
-
-    public function __construct()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $this->middleware('guest');
+
+        $users = User::all();
+        dd($users);
     }
 
-    //UNTUK VALIDASI FIELD TERISI
-    protected function validator(array $data)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        return view("AUTH.register");
     }
 
-    //FUNCTION CREATE [MODEL]
-    protected function create(array $data)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $req)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = new User;
+        $user->username = $req->username;
+        $user->password = $req->password;
+        $user->email = $req->email;
+        $user->phone_int = $req->phone_int;
+        $user->type = 0;
+        $user->deleted = 0;
+        $user->save();
+
+        return redirect("/login");
     }
 
-    //SHOW PAGE REGISTER
-    public function showRegistrationForm()
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        return view('auth.register');
+        //
     }
 
-    //PROSES REGISTER
-    public function register(Request $request)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        $this->validator($request->all())->validate();
+        //
+    }
 
-        $user = $this->create($request->all());
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
 
-        // Additional logic after user registration if needed
-
-        return redirect(route('login'))->with('success', 'Registration successful! You can now log in.');
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

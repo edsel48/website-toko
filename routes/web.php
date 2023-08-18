@@ -19,11 +19,18 @@ Route::get('/', function () {
 
 //1. REGISTER
 use App\Http\Controllers\Auth\RegisterController;
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
+
+Route::resource("/register", RegisterController::class);
 
 //2. Login
 use App\Http\Controllers\Auth\LoginController;
+
 Route::resource('/login', LoginController::class);
 // Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 // Route::post('/login', [LoginController::class, 'login']);
+
+
+//-69 Test
+use App\Http\Controllers\TestController;
+
+Route::resource('/test', TestController::class);
