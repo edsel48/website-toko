@@ -18,6 +18,8 @@ class RegisterController extends Controller
     {
 
         $users = User::all();
+        $users = $users->where("deleted", '!=', 1);
+
 
         // todo add view later
         return view("", [
