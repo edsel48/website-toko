@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
-use App\Models\Auth\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
-class RegisterController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +14,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-
-        $users = User::all();
-
-        // todo add view later
-        return view("", [
-            "users" => $users
-        ]);
+        //
     }
 
     /**
@@ -32,7 +24,7 @@ class RegisterController extends Controller
      */
     public function create()
     {
-        return view("AUTH.register");
+        //
     }
 
     /**
@@ -41,18 +33,9 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
-        $user = new User;
-        $user->username = $req->username;
-        $user->password = $req->password;
-        $user->email = $req->email;
-        $user->phone_int = $req->phone_int;
-        $user->type = 0;
-        $user->deleted = 0;
-        $user->save();
-
-        return Redirect::back();
+        //
     }
 
     /**
@@ -63,12 +46,7 @@ class RegisterController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-
-        //todo later add view
-        return view("", [
-            "user" => $user
-        ]);
+        //
     }
 
     /**
@@ -89,17 +67,9 @@ class RegisterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $req, $id)
+    public function update(Request $request, $id)
     {
-        $user = User::find($id);
-
-        $user->username = $req->username;
-        $user->password = $req->password;
-        $user->phone_int = $req->phone_int;
-        $user->type = $req->type;
-        $user->save();
-
-        return Redirect::back();
+        //
     }
 
     /**
