@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('testing');
+    return redirect(route('login.index'));
 });
 
 //1. REGISTER
@@ -26,11 +26,3 @@ Route::resource("/register", RegisterController::class);
 use App\Http\Controllers\Auth\LoginController;
 
 Route::resource('/login', LoginController::class);
-// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [LoginController::class, 'login']);
-
-
-//-69 Test
-use App\Http\Controllers\TestController;
-
-Route::resource('/test', TestController::class);
