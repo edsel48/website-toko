@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="flex justify-end">
-                    Don't have an account? <a href="{{ route('register') }}" class="text-blue-600 ml-1">Register</a>
+                    Don't have an account? <a href="/register/create" class="text-blue-600 ml-1">Register</a>
                 </div>
             </form>
         </div>
