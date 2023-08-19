@@ -42,6 +42,11 @@ class PromoController extends Controller
     {
         $promo = new Promo;
         $promo->name = $request->name;
+        $promo->product_id = $request->product_id;
+        $promo->start_date = $request->start_date;
+        $promo->end_date = $request->end_date;
+        $promo->discount = $request->discount;
+        $promo->min_purchase = $request->min_purchase;
 
         $promo->save();
 
