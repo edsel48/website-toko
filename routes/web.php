@@ -32,10 +32,12 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Inventory\CategoryController;
 use App\Http\Controllers\Inventory\ProductController;
 use App\Http\Controllers\Inventory\PromoController;
+use App\Http\Controllers\Inventory\SupplierController;
 
 Route::prefix("admin")->group(function () {
     Route::resource("/", AdminController::class);
     Route::resource("/product", ProductController::class);
     Route::resource("/promo", PromoController::class);
     Route::resource("/category", CategoryController::class);
+    Route::resource("/supplier", SupplierController::class);
 });

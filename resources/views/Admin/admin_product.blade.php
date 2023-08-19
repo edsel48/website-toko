@@ -4,8 +4,8 @@
     <h1 class="flex text-xl font-bold justify-center">
         ADMIN
     </h1>
-    <x-admin-header/>
-    <a href="./product/create" class="flex justify-end align-center font-bold">
+    <x-admin-header header="product" />
+    <a href="{{route("product.create")}}" class="flex justify-end align-center font-bold">
         New Product
     </a>
     <table class="w-full text-left text-sm font-light">

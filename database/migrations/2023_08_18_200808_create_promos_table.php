@@ -19,8 +19,7 @@ class CreatePromosTable extends Migration
             $table->date("start_date");
             $table->date("end_date");
             $table->double("discount");
-            $table->integer("type");
-            $table->integer("price_base_condition");
+            $table->integer("min_purchase");
         });
     }
 
