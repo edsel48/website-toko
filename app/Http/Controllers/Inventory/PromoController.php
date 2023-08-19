@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inventory\Product;
+use App\Models\Inventory\Promo;
 use Illuminate\Http\Request;
 
 class PromoController extends Controller
@@ -14,7 +16,9 @@ class PromoController extends Controller
      */
     public function index()
     {
-        return view("admin/admin_promo");
+        $promos = Promo::all();
+
+        return view("admin/admin_promo", compact("promos"));
     }
 
     /**
@@ -24,7 +28,8 @@ class PromoController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all()->where("deleted", "!=", 1);
+        return view("admin/promo_create", compact("products"));
     }
 
     /**
@@ -35,7 +40,12 @@ class PromoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $promo = new Promo;
+        $promo->name = $request->name;
+
+        $promo->save();
+
+        return redirect(route("promo.index"));
     }
 
     /**

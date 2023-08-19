@@ -18,8 +18,7 @@ class Promo extends Model
     protected $start_date;
     protected $end_date;
     protected $discount;
-    protected $type;
-    protected $price_base_condition;
+    protected $min_purchase;
 
     public function product(): BelongsTo
     {
