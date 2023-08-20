@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inventory\Supplier;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -14,7 +15,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers = Supplier::all();
+
+        return view("admin.admin_supplier", compact("suppliers"));
     }
 
     /**
@@ -24,7 +27,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.supplier_create");
     }
 
     /**
@@ -35,7 +38,12 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supplier = new Supplier;
+        $supplier->name = $request->name;
+
+        $supplier->save();
+
+        return redirect(route("supplier.index"));
     }
 
     /**

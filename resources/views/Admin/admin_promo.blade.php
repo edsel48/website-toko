@@ -19,7 +19,6 @@
             <th scope="col" class="px-6 py-4">Discount</th>
             <th scope="col" class="px-6 py-4">Min Purchase</th>
             <th scope="col" class="px-6 py-4">Action</th>
-
           </tr>
         </thead>
         <tbody>
