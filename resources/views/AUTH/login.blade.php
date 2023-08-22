@@ -6,9 +6,9 @@
         <div class="bg-white rounded-lg shadow-md p-8">
             <div class="text-2xl font-semibold mb-6">{{ __('Login') }}</div>
 
-            <form method="POST" action="{{ route('login.create') }}" class="space-y-4">
+            <form method="POST" action="{{ route('login.store') }}" class="space-y-4">
                 @csrf
-
+                @method("POST")
                 <div class="flex flex-col">
                     <label for="email" class="text-sm font-medium">{{ __('E-Mail Address') }}</label>
                     <input id="email" type="email" class="mt-1 p-2 border @error('email') border-red-500 @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

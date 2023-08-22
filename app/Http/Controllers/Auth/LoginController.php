@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Auth\User;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -35,7 +37,28 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $users = User::all();
+
+        $email = $request->email;
+        $password = $request->password;
+
+        $valid = false;
+        $position = "user";
+        $user_logged = null;
+
+        foreach ($users as $user) {
+            if ($user->email == $email) {
+                if ($password == $user->password) {
+                    $valid = true;
+                    if ($user->type == 1) $position = "admin";
+                    $user_logged = $user;
+                }
+            }
+        }
+
+        if (!$valid) return Redirect::back();
+        if ($position == "user") return redirect(route("login.show", $user->id));
+        return redirect(route("index"));
     }
 
     /**
@@ -46,7 +69,8 @@ class LoginController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view("Auth.my-account", compact("user"));
     }
 
     /**

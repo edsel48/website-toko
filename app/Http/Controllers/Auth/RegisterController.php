@@ -22,7 +22,7 @@ class RegisterController extends Controller
 
 
         // todo add view later
-        return view("", [
+        return view("Auth.register", [
             "users" => $users
         ]);
     }
@@ -50,7 +50,7 @@ class RegisterController extends Controller
         $user->password = $req->password;
         $user->email = $req->email;
         $user->phone_int = $req->phone_int;
-        $user->type = 0;
+        $user->type = 1;
         $user->deleted = 0;
         $user->save();
 
@@ -65,12 +65,6 @@ class RegisterController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-
-        //todo later add view
-        return view("", [
-            "user" => $user
-        ]);
     }
 
     /**
