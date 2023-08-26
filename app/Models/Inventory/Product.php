@@ -20,6 +20,7 @@ class Product extends Model
     protected $price;
     protected $description;
     protected $stock;
+    protected $img;
     protected $deleted;
 
     protected $category_id;

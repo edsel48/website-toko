@@ -1,16 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Inventory;
+namespace App\Http\Controllers\test;
 
 use App\Http\Controllers\Controller;
-use App\Models\Inventory\Category;
-use App\Models\Inventory\Product;
-use App\Models\Inventory\Supplier;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Redis;
 
-class ProductController extends Controller
+class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-
-        return view("admin/admin_product", [
-            "products" => Product::all()->where("deleted", "!=", 1)
-        ]);
+        return view("User.index");
     }
 
     /**
@@ -32,10 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        $suppliers = Supplier::all();
-
-        return view("admin/product_create", compact("categories", "suppliers"));
+        //
     }
 
     /**
@@ -46,20 +35,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product;
-
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->description = $request->description;
-        $product->stock = $request->stock;
-        $product->deleted = 0;
-        $product->img = "";
-        $product->category_id = $request->category_id;
-        $product->supplier_id = $request->supplier_id;
-
-        $product->save();
-
-        return redirect("./admin/product");
+        //
     }
 
     /**
@@ -70,9 +46,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
-
-        dd($product);
+        //
     }
 
     /**
@@ -83,6 +57,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        //
     }
 
     /**
@@ -94,6 +69,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //
     }
 
     /**
@@ -104,11 +80,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-
-        $product->deleted = 1;
-        $product->save();
-
-        return redirect("./admin/product");
+        //
     }
 }
