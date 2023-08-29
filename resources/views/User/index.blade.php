@@ -9,11 +9,14 @@
             </div>
             <div class="flex gap-10 w-full flex-wrap justify-between px-8">
                 @foreach ($products as $product)
-                <x-product.product-card
-                name="{{$product->name}}"
-                price="{{$product->price}}"
-                img=""
-                stock="{{$product->stock}}"/>
+                <a href={{route("user.show", $product->id)}}>
+                    <x-product.product-card
+                        name="{{$product->name}}"
+                        price="{{$product->price}}"
+                        img=""
+                        stock="{{$product->stock}}"
+                    />
+                </a>
                 @endforeach
             </div>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\test;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inventory\Product;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -14,7 +15,9 @@ class TestController extends Controller
      */
     public function index()
     {
-        return view("User.index");
+        $products = Product::all();
+
+        return view("User.index", compact("products"));
     }
 
     /**
@@ -46,7 +49,9 @@ class TestController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        return view("User.product-detail", compact("product"));
     }
 
     /**
