@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect(route('index'));
+    return redirect(route('user.index'));
 });
 
 //1. REGISTER
@@ -33,8 +33,6 @@ use App\Http\Controllers\Inventory\CategoryController;
 use App\Http\Controllers\Inventory\ProductController;
 use App\Http\Controllers\Inventory\PromoController;
 use App\Http\Controllers\Inventory\SupplierController;
-use App\Http\Controllers\test\TestController;
-use App\Http\Controllers\user\UserController;
 
 Route::prefix("admin")->group(function () {
     Route::resource("/", AdminController::class);
@@ -45,7 +43,10 @@ Route::prefix("admin")->group(function () {
 });
 
 //4. User Main Page
+use App\Http\Controllers\user\UserController;
 
-Route::resource("/", UserController::class);
+Route::resource("/user", UserController::class);
+
+use App\Http\Controllers\test\TestController;
 
 Route::resource("/test", TestController::class);

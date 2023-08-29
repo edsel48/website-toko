@@ -1,13 +1,13 @@
 <header>
     <div class="flex justify-around align-center">
-        <div class="hero flex flex-col flex-1">
+        <a href="{{route("user.index")}}" class="hero flex flex-col flex-1">
             <div class="font-bold text-xl">
                 {{ "TOKOKU GEMING" }}
             </div>
             <div class="font-bold text-sm">
                 {{ "WELCOME TO TOKOKU" }}
             </div>
-        </div>
+        </a>
 
         <div class="routes flex justify-around flex-1">
             <a href="" class="font-semibold">TEST ROUTE</a>

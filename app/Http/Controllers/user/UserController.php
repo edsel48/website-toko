@@ -28,6 +28,8 @@ class UserController extends Controller
     public function create()
     {
         //
+
+        dd("test");
     }
 
     /**
@@ -39,6 +41,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        dd("test");
     }
 
     /**
@@ -49,7 +52,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        return view("User.product-detail", compact("product"));
     }
 
     /**
@@ -60,7 +65,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd("test");
     }
 
     /**
@@ -72,7 +77,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd("test");
     }
 
     /**
@@ -83,6 +88,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd("test");
     }
 }
