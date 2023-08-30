@@ -16,4 +16,8 @@ def process_data():
     return json.dumps({"data": data})
 
 
+@app.route("/testing")
+def testing_data():
+    return json.dumps({"testing": "this is testing data"})
+
 app.run()
