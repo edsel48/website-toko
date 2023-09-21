@@ -41,7 +41,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        dd("test");
+        $request->session()->forget('user_logged');
+
+        return redirect(route('user.index'));
     }
 
     /**
