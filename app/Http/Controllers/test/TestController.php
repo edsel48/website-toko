@@ -54,17 +54,8 @@ class TestController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-
-        $data = array();
-
-        for($i = 0; $i < 100; $i++){
-            array_push($data, $i);
-        }
-
-        dd($this->predictData($data));
-
-        return view("User.index", compact("products"));
+        $product = Product::all()[0];
+        return view("test", compact("product"));
     }
 
     /**

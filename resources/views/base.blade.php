@@ -7,7 +7,10 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
 </head>
-<body class="w-full h-screen p-6 bg-white">
-    @yield('content')
+<body class="w-full h-screen bg-white">
+    <div class="wrapper p-10">
+        @yield('content')
+    </div>
+    <x-footer.footer/>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<div class="product flex-1 rounded-md border-1 border-solid border-primary-1 p-5">
+<div class="product flex-1 rounded-md border border-1 border-solid border-primary-1 p-5">
     <div class="product-name text-xl font-bold">
         {{$name}}
     </div>
