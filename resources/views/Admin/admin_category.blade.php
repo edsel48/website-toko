@@ -1,4 +1,4 @@
-@extends('../base')
+@extends('../base-test')
 
 @section('content')
     <h1 class="flex text-xl font-bold justify-center">

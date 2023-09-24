@@ -5,14 +5,12 @@
 <section class="pb-10">
     <div class="h-screen">
         <div class="font-bold text-xl item-start my-8">
-            TERLARIS
+            Product Kami
         </div>
         <div class="flex gap-10 w-full flex-wrap justify-between px-8">
             @foreach ($products as $product)
-            <a href={{route("user.show", $product->id)}} class="flex-1 shadow-md hover:border-primary-2 rounded-lg">
-                <x-product.product-card name="{{$product->name}}" price="{{$product->price}}" img=""
-                    stock="{{$product->stock}}" />
-            </a>
+            <x-product.product-card name="{{$product->name}}" price="{{$product->price}}"
+                stock="{{$product->stock}}" id="{{$product->id}}" />
             @endforeach
         </div>
     </div>

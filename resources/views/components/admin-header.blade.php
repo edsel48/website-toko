@@ -1,33 +1,33 @@
 
 <div class="flex justify-around border-black p-5 w-full">
     @if($header == "none")
-        <a href="./admin/product">Product</a>
-        <a href="./admin/promo">Promo</a>
-        <a href="./admin/category">Category</a>
-        <a href="./admin/supplier">Supplier</a>
+        <x-link route="product.index" text="Product" />
+        <x-link route="promo.index" text="Promo" />
+        <x-link route="category.index" text="Category" />
+        <x-link route="supplier.index" text="Supplier" />
     @else
         @if($header == "product")
-            <a href="./product"><b>Product</b></a>
+            <x-link route="product.index" text="Product" :on=true />
         @else
-            <a href="./product">Product</a>
+            <x-link route="product.index" text="Product" />
         @endif
 
         @if($header == "promo")
-            <a href="./promo"><b>Promo</b></a>
+            <x-link route="promo.index" text="Promo" :on=true />
         @else
-            <a href="./promo">Promo</a>
+            <x-link route="promo.index" text="Promo" />
         @endif
 
         @if($header == "category")
-            <a href="./category"><b>Category</b></a>
+            <x-link route="category.index" text="Category" :on=true />
         @else
-            <a href="./category">Category</a>
+            <x-link route="category.index" text="Category" />
         @endif
 
         @if($header == "supplier")
-            <a href="./supplier"><b>Supplier</b></a>
+            <x-link route="supplier.index" text="Supplier" :on=true />
         @else
-            <a href="./supplier">Supplier</a>
+            <x-link route="supplier.index" text="Supplier" />
         @endif
     @endif
 </div>

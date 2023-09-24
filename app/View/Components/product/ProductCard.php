@@ -11,18 +11,20 @@ class ProductCard extends Component
     public $price;
     public $img;
     public $stock;
+    public $id;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name, $price, $img="https://placehold.co/150x150", $stock)
+    public function __construct($name, $price, $img="https://placehold.co/300x150", $stock, $id)
     {
         $this->name = $name;
         $this->price = $price;
         $this->img = $img;
         $this->stock = $stock;
+        $this->id = $id;
     }
 
     /**

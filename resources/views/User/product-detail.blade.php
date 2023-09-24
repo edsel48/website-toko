@@ -5,7 +5,7 @@
 
 <div class="bg-white rounded-lg shadow-md p-6 mt-4">
     <div class="flex justify-center">
-        <img src="{{ $product->img == "" ? "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fmyrescuedogrescuedme.files.wordpress.com%2F2011%2F09%2Fboo-the-worlds-cutest-dog-profile-picture-on-facebook.jpg&f=1&nofb=1&ipt=221500745647a9d36bc2773e810b0707b5b18ee76d041b83f47d980a5fab9dc8&ipo=images" : $product->img }}" alt="{{ $product->name }}" class="w-1/6 h-auto">
+        <img src="{{ $product->img == "" ? "https://placehold.co/300x150" :  $product->img }}" alt="{{ $product->name }}" class="w-1/6 h-auto">
     </div>
     <h1 class="text-2xl font-semibold mt-4">{{ $product->name }}</h1>
     <p class="text-gray-600 text-sm">{{ $product->description }}</p>
@@ -21,12 +21,12 @@
         @endif
     </div>
     <div class="mt-4 flex justify-end align-center ">
-        <button class="bg-blue-500 hover:bg-blue-600
-        text-white font-semibold py-2 px-4 rounded flex items-center">
-            <i class="fas fa-shopping-cart mr-2"></i>
-            <span>Add to Cart</span>
-        </button>
-
+        <x-button type="button" id="{{$product->id}}" :primary=false>
+            <x-slot name="text">
+                <i class="fas fa-shopping-cart mr-2"></i>
+                Add to Cart
+            </x-slot>
+        </x-button>
     </div>
 </div>
 @endsection

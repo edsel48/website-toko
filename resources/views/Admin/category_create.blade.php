@@ -1,4 +1,4 @@
-@extends('../base')
+@extends('../base-test')
 
 @section('content')
 <div class="justify-center align-center">
