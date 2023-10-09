@@ -21,12 +21,16 @@
         @endif
     </div>
     <div class="mt-4 flex justify-end align-center ">
-        <x-button type="button" id="{{$product->id}}" :primary=false>
-            <x-slot name="text">
-                <i class="fas fa-shopping-cart mr-2"></i>
-                Add to Cart
-            </x-slot>
-        </x-button>
+        <form action="/user/{{$product->id}}" method="POST" class="flex flex-row gap-5 items-center">
+            @csrf
+            <input type="number" name="qty" class="p-2 border border-primary-1 rounded-md" placeholder="quantity" min=1> <p> pcs </p>
+            <x-button type="submit" id="{{$product->id}}" :primary=false>
+                <x-slot name="text">
+                    <i class="fas fa-shopping-cart mr-2"></i>
+                    Add to Cart
+                </x-slot>
+            </x-button>
+        </form>
     </div>
 </div>
 @endsection

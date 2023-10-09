@@ -2,7 +2,7 @@
     <div class="flex justify-around align-center">
         <x-user.user-logo/>
 
-        <div class="flex flex-1 justify-end space-x-10 text-primary-1">
+        <div class="flex flex-1 items-center justify-end gap-x-5 text-primary-1">
             @if(!session()->has('user_logged'))
             <a href="{{ route('login.index') }}" class="font-bold">
                 <x-button type="submit" :primary=false>
@@ -16,10 +16,14 @@
             <div class="text-md font-semibold">
                 {{session()->get('user_logged')->username}}
             </div>
-            <div class="text-md text-primary-1">
-                <i class="fa-solid fa-shopping-cart"></i>
-                Cart
-            </div>
+            <a href="{{route("my-cart")}}">
+                <x-button type="button" :primary=false>
+                    <x-slot name="text">
+                        <i class="fa-solid fa-shopping-cart"></i>
+                        Cart
+                    </x-slot>
+                </x-button>
+            </a>
             <div class="logout text-md font-semibold text-primary-1">
                 <form action="{{route('user.store')}}" method="post">
                     @csrf

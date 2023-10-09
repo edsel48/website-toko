@@ -76,18 +76,14 @@
         let links = `https://api.whatsapp.com/send/?phone=${phone}&text=`
         links += text
 
-        console.log(links)
-
         submit.setAttribute("href", links)
     }
 
     name.addEventListener("change", ()=>{
-        alert(getText(name.value, message.value))
         change(getText(name.value, message.value))
     })
 
     message.addEventListener("change", ()=>{
-        alert(getText(name.value, message.value))
         change(getText(name.value, message.value))
     })
 </script>

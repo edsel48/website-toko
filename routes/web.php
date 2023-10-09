@@ -42,10 +42,17 @@ Route::prefix("admin")->group(function () {
     Route::resource("/supplier", SupplierController::class);
 });
 
+use App\Http\Controllers\CartController;
+
+Route::get("/user/mycart", [CartController::class, "myCart"])->name("my-cart");
+Route::post("/user/{product_id}", [CartController::class, "addProduct"]);
+
+
 //4. User Main Page
 use App\Http\Controllers\user\UserController;
 
 Route::resource("/user", UserController::class);
+
 
 use App\Http\Controllers\test\TestController;
 
