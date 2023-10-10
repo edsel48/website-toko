@@ -44,6 +44,7 @@ Route::prefix("admin")->group(function () {
 
 use App\Http\Controllers\CartController;
 
+// Carting Stuff
 Route::get("/user/mycart", [CartController::class, "myCart"])->name("my-cart");
 Route::post("/user/{product_id}", [CartController::class, "addProduct"]);
 
