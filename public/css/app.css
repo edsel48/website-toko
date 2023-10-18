@@ -8386,6 +8386,9 @@ video {
 .flex-1{
   flex: 1 1 0%;
 }
+.table-fixed{
+  table-layout: fixed;
+}
 .flex-row{
   flex-direction: row;
 }

@@ -48,6 +48,14 @@
             <x-link route="test.index" text="Test Index" :primary=false/>
         </div>
     </div>
+
+    <div class="flex flex-col flex-1 gap-10">
+        <div class="text-xl font-bold">Carts Component</div>
+         <div class="links flex flex-col gap-2 p-10 justify-center items-center">
+            <x-user.cart-card />
+            <x-user.cart-card />
+        </div>
+    </div>
 </div>
 @endsection
 <x-footer.footer/>
