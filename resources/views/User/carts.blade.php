@@ -1,7 +1,9 @@
 @extends('../base')
 
 @section("content")
-<table class="border border-primary-1 w-full p-2 table-fixed text-center">
+<x-user.user-header />
+
+<table class="border border-primary-1 w-full p-2 table-fixed text-center mt-10">
     <thead class="border-b font-medium dark:border-neutral-500">
         <tr>
             <th scope="col" class="px-6 py-4">Item Image</th>

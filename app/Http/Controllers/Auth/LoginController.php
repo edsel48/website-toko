@@ -57,10 +57,13 @@ class LoginController extends Controller
         }
 
         if (!$valid) return Redirect::back();
-        if ($position == "user") return redirect(route("login.show", $user->id));
 
         // setting up user that has logged
         $request->session()->put('user_logged', $user_logged);
+
+        if($user_logged->type == 1){
+            return redirect(route("user.index"));
+        }
 
         return redirect(route("index"));
     }
