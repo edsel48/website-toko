@@ -8,32 +8,35 @@ use App\Models\Inventory\Product;
 
 class CartController extends Controller
 {
-    private function getIds(Request $request){
-        if(!$request->session()->has("user_logged")){
+    private function getIds(Request $request)
+    {
+        if (!$request->session()->has("user_logged")) {
             return redirect(route("login.index"));
         }
 
         return $request->session()->get("user_logged")->id;
     }
 
-    function checkProduct(Request $request){
+    function checkProduct(Request $request)
+    {
         $user_id = $this->getIds($request);
 
         $data = Cart::all()->where("user_id", $user_id)->where("product_id", $request->product_id);
 
-        if(count($data) == 1){
+        if (count($data) == 1) {
             return $data[0]->id;
         }
 
         return -1;
     }
 
-    function addProduct(Request $request){
+    function addProduct(Request $request)
+    {
 
         $user_id = $this->getIds($request);
         $ids = $this->checkProduct($request);
 
-        if($ids == -1){
+        if ($ids == -1) {
             $cart = new Cart;
 
             $cart->user_id = $user_id;
@@ -57,18 +60,33 @@ class CartController extends Controller
     }
 
 
-
-    function myCart(Request $request){
+    function myCart(Request $request)
+    {
         $user_id = $this->getIds($request);
 
         $carts = Cart::all()->where("user_id", $user_id);
 
         $products = [];
 
-        foreach($carts as $cart){
-            $products[] = [Product::find($cart->product_id), $cart->qty];
+        $totals = 0;
+
+        foreach ($carts as $cart) {
+            $product = Product::find($cart->product_id);
+
+            $totals += $product->price * $cart->qty;
+
+            $products[] = [$product, $cart->qty];
         }
 
-        return view("user.carts", compact("products"));
+        return view("user.carts", [
+            "products" => $products,
+            "totals" => $totals,
+        ]);
+    }
+
+    function addItem(Request $request){
+        $user_id = $this->getIds($request);
+
+
     }
 }
