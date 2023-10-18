@@ -45,7 +45,7 @@ class CartController extends Controller
 
             $cart->save();
 
-            return redirect(route("index"));
+            return redirect(route("my-cart"));
         }
 
         $cart = Cart::find($ids);
@@ -56,7 +56,7 @@ class CartController extends Controller
 
         $cart->save();
 
-        return redirect(route("index"));
+        return redirect(route("my-cart"));
     }
 
 
