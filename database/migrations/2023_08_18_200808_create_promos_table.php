@@ -21,6 +21,7 @@ class CreatePromosTable extends Migration
             $table->date("end_date");
             $table->double("discount");
             $table->integer("min_purchase");
+            $table->softDeletes();
         });
     }
 

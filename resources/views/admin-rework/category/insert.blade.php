@@ -1,4 +1,4 @@
-@extends('../base-test')
+@extends('../admin-rework/rework')
 
 @section('content')
 <div class="justify-center align-center">
@@ -17,9 +17,16 @@
             </div>
 
             <div class="flex justify-end">
-                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                    {{ __('Add New Category') }}
-                </button>
+                <div>
+                    <x-button primary={{false}} type="submit">
+                        <x-slot name="text">
+                            <i class="fa-solid fa-plus"></i>
+                            <span class="ml-3">
+                                Add New Category
+                            </span>
+                        </x-slot>
+                    </x-button>
+                </div>
             </div>
         </form>
     </div>

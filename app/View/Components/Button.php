@@ -17,7 +17,7 @@ class Button extends Component
      *
      * @return void
      */
-    public function __construct($type, $text="SOME RANDOM TEXT", $primary=true, $id="some-random-id")
+    public function __construct($type="button", $text="SOME RANDOM TEXT", $primary=true, $id="some-random-id")
     {
         $this->type = $type;
         $this->text = $text;

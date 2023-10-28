@@ -17,7 +17,7 @@ class SupplierController extends Controller
     {
         $suppliers = Supplier::all();
 
-        return view("admin.admin_supplier", compact("suppliers"));
+        return redirect(route("admin-rework.supplier"), compact("suppliers"));
     }
 
     /**
@@ -27,7 +27,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view("admin.supplier_create");
+        return view("admin-rework.supplier.insert");
     }
 
     /**
@@ -43,7 +43,7 @@ class SupplierController extends Controller
 
         $supplier->save();
 
-        return redirect(route("supplier.index"));
+        return redirect(route("admin-rework.supplier"));
     }
 
     /**
@@ -65,7 +65,9 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sup = Supplier::find($id);
+
+        return view("admin-rework.supplier.update", compact("sup"));
     }
 
     /**
@@ -77,7 +79,13 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $supplier = Supplier::find($id);
+
+        $supplier->name = $request->name;
+
+        $supplier->save();
+
+        return redirect(route("admin-rework.supplier"));
     }
 
     /**
@@ -88,6 +96,8 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Supplier::find($id)->delete();
+
+        return redirect(route("admin-rework.supplier"));
     }
 }

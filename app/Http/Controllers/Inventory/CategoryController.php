@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view("admin.category_create");
+        return view("admin-rework.category.insert");
     }
 
     /**
@@ -43,7 +43,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect(route("category.index"));
+        return redirect(route("admin-rework.category"));
     }
 
     /**
@@ -54,7 +54,6 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -65,7 +64,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cat =  Category::find($id);
+        return view("admin-rework.category.update", compact("cat"));
     }
 
     /**
@@ -77,7 +77,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->name = $request->name;
+
+        $category->save();
+
+        return redirect(route("admin-rework.category"));
     }
 
     /**
@@ -88,6 +94,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::find($id)->delete();
+
+        return redirect(route("admin-rework.category"));
     }
 }

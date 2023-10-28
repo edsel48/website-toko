@@ -1,0 +1,3 @@
+<tbody>
+    {{$body}}
+</tbody>

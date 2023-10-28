@@ -34,7 +34,7 @@ use App\Http\Controllers\Inventory\ProductController;
 use App\Http\Controllers\Inventory\PromoController;
 use App\Http\Controllers\Inventory\SupplierController;
 
-Route::prefix("admin")->group(function () {
+Route::prefix("admin-resource")->group(function () {
     Route::resource("/", AdminController::class);
     Route::resource("/product", ProductController::class);
     Route::resource("/promo", PromoController::class);
@@ -58,3 +58,17 @@ Route::resource("/user", UserController::class);
 use App\Http\Controllers\test\TestController;
 
 Route::resource("/test", TestController::class);
+
+use App\Http\Controllers\test\AdminTestController;
+
+Route::prefix("admin")->group(function(){
+    Route::get("/", [AdminTestController::class, "landing"])->name("admin-rework.index");
+    Route::get("/dashboard", [AdminTestController::class, "index"])->name("admin-rework.dashboard");
+    Route::get("/product", [AdminTestController::class, "product"])->name("admin-rework.product");
+    Route::get("/category", [AdminTestController::class, "category"])->name("admin-rework.category");
+    Route::get("/promo", [AdminTestController::class, "promo"])->name("admin-rework.promo");
+    Route::get("/supplier", [AdminTestController::class, "supplier"])->name("admin-rework.supplier");
+    Route::get("/cart", [AdminTestController::class, "index"])->name("admin-rework.cart");
+    Route::get("/user", [AdminTestController::class, "index"])->name("admin-rework.user");
+});
+

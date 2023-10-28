@@ -5,4 +5,4 @@
         ADMIN
     </h1>
     <x-admin-header header="none"/>
-@endsection
+@endsection()

@@ -18,7 +18,7 @@ class PromoController extends Controller
     {
         $promos = Promo::all();
 
-        return view("admin/admin_promo", compact("promos"));
+        return view("admin-rework.promo.index", compact("promos"));
     }
 
     /**
@@ -29,7 +29,7 @@ class PromoController extends Controller
     public function create()
     {
         $products = Product::all()->where("deleted", "!=", 1);
-        return view("admin/promo_create", compact("products"));
+        return view("admin-rework.promo.insert", compact("products"));
     }
 
     /**
@@ -50,7 +50,7 @@ class PromoController extends Controller
 
         $promo->save();
 
-        return redirect(route("promo.index"));
+        return redirect(route("admin-rework.promo"));
     }
 
     /**
@@ -95,6 +95,6 @@ class PromoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Promo::find($id)->delete();
     }
 }

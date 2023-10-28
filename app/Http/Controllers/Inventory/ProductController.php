@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
 
-        return view("admin/admin_product", [
+        return view("admin-rework.product.index", [
             "products" => Product::all()->where("deleted", "!=", 1)
         ]);
     }
@@ -35,7 +35,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $suppliers = Supplier::all();
 
-        return view("admin/product_create", compact("categories", "suppliers"));
+        return view("admin-rework.product.insert", compact("categories", "suppliers"));
     }
 
     /**
@@ -59,7 +59,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect("./admin/product");
+        return redirect(route("admin-rework.product"));
     }
 
     /**
@@ -70,9 +70,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
-
-        dd($product);
+        //tbd
     }
 
     /**
@@ -83,6 +81,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $product = Product::find($id);
+        $categories = Category::all();
+        $suppliers = Supplier::all();
+
+        return view("admin-rework.product.update", compact("categories", "suppliers", "product"));
     }
 
     /**
@@ -94,6 +97,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $product = Product::find($id);
+
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->stock = $request->stock;
+        $product->deleted = 0;
+        $product->img = "";
+        $product->category_id = $request->category_id;
+        $product->supplier_id = $request->supplier_id;
+
+        $product->save();
+
+        return redirect(route("admin-rework.product"));
     }
 
     /**
@@ -109,6 +126,6 @@ class ProductController extends Controller
         $product->deleted = 1;
         $product->save();
 
-        return redirect("./admin/product");
+        return redirect(route("admin-rework.product"));
     }
 }
