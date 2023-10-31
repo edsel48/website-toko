@@ -4,8 +4,10 @@ namespace App\Http\Controllers\test;
 
 use App\Http\Controllers\Controller;
 use App\Models\Inventory\Category;
+use App\Models\Pos\THeader;
 use App\Models\Inventory\Promo;
 use App\Models\Inventory\Product;
+use App\Models\Inventory\Unit;
 use App\Models\Inventory\Supplier;
 use Illuminate\Http\Request;
 
@@ -22,19 +24,22 @@ class AdminTestController extends Controller
             ["Category", "folder"],
             ["Promo", "tag"],
             ["Supplier", "truck-field"],
+            ["POS", "money-bill"],
+            ["Unit", "barcode"],
             ["Cart", "shopping-cart"],
-            ["User", "user"]
+            ["User", "user"],
         ]);
 
         request()->session()->put('active', "dashboard");
 
-        $product = count(Product::where("deleted", "!=", 1)->get());
+        $product = count(Product::all());
         $category = count(Category::all());
         $promo = count(Promo::all());
         $supplier = count(Supplier::all());
+        $transaction = count(THeader::all());
 
 
-        return view("admin-rework.dashboard", compact("product", "category", "promo", "supplier"));
+        return view("admin-rework.dashboard", compact("product", "category", "promo", "supplier", "transaction"));
     }
 
     function category(){
@@ -77,13 +82,37 @@ class AdminTestController extends Controller
 
     function product(){
         request()->session()->put('active', "product");
-        $products = Product::where("deleted", "!=", 1);
+        $products = Product::all();
 
         if(request()->query){
             $data = request()->query("search");
-            $products = Product::where("name", "like", "%".$data."%")->where("deleted", "!=", 1)->get();
+            $products = Product::where("name", "like", "%".$data."%")->get();
         }
 
         return view(".admin-rework.product.index", compact("products"));
+    }
+
+    function pos(){
+        request()->session()->put('active', "pos");
+        $transaction = THeader::all();
+
+        if(request()->query){
+            $data = request()->query("search");
+            $transaction = THeader::where("status", "like", "%".$data."%")->get();
+        }
+
+        return view(".admin-rework.transaction.index", compact("transaction"));
+    }
+
+    function unit(){
+        request()->session()->put('active', "unit");
+        $unit = Unit::all();
+
+        // if(request()->query){
+        //     $data = request()->query("search");
+        //     $transaction = THeader::where("status", "like", "%".$data."%")->get();
+        // }
+
+        return view(".admin-rework.unit.index", compact("unit"));
     }
 }

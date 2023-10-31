@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inventory;
 use App\Http\Controllers\Controller;
 use App\Models\Inventory\Category;
 use App\Models\Inventory\Product;
+use App\Models\Inventory\Unit;
 use App\Models\Inventory\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -21,7 +22,7 @@ class ProductController extends Controller
     {
 
         return view("admin-rework.product.index", [
-            "products" => Product::all()->where("deleted", "!=", 1)
+            "products" => Product::all()
         ]);
     }
 
@@ -49,15 +50,27 @@ class ProductController extends Controller
         $product = new Product;
 
         $product->name = $request->name;
-        $product->price = $request->price;
         $product->description = $request->description;
-        $product->stock = $request->stock;
-        $product->deleted = 0;
         $product->img = "";
         $product->category_id = $request->category_id;
         $product->supplier_id = $request->supplier_id;
 
         $product->save();
+
+        $id = $product->id;
+
+        $unit = new Unit;
+        $unit->product_id = $id;
+        $unit->stock = $request->stock;
+        $unit->price = $request->price;
+
+        $unit->length = 0;
+        $unit->width = 0;
+        $unit->height = 0;
+        $unit->weight = 0;
+
+        $unit->save();
+
 
         return redirect(route("admin-rework.product"));
     }
@@ -100,13 +113,14 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         $product->name = $request->name;
-        $product->price = $request->price;
         $product->description = $request->description;
-        $product->stock = $request->stock;
-        $product->deleted = 0;
         $product->img = "";
         $product->category_id = $request->category_id;
         $product->supplier_id = $request->supplier_id;
+
+        $product->unit->price = $request->price;
+        $product->unit->stock = $request->stock;
+        $product->unit->save();
 
         $product->save();
 
@@ -121,10 +135,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
+        Product::find($id)->unit->delete();
+        Product::find($id)->delete();
 
-        $product->deleted = 1;
-        $product->save();
+
 
         return redirect(route("admin-rework.product"));
     }

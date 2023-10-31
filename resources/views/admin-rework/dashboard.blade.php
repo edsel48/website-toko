@@ -1,7 +1,7 @@
 @extends("../admin-rework/rework")
 @section("content")
-<div class="flex gap-5 justify-around">
-    <a href="{{route("admin-rework.product")}}" class="border border-primary-1 rounded-md shadow-md flex justify-around items-center p-5">
+<div class="flex gap-5 justify-around flex-auto">
+    <a href="{{route("admin-rework.product")}}" class="border border-primary-1 rounded-md shadow-md flex justify-around items-center p-5 flex-1">
         <div class="logo flex gap-2 items-start">
             <div class="bg-gray-50 rounded-full p-5">
                 <i class="fa-solid fa-boxes-stacked"></i>
@@ -16,7 +16,7 @@
             </div>
         </div>
     </a>
-    <a href="{{route("admin-rework.category")}}" class="border border-primary-1 rounded-md shadow-md flex justify-around items-center p-5">
+    <a href="{{route("admin-rework.category")}}" class="border border-primary-1 rounded-md shadow-md flex justify-around items-center p-5 flex-1">
         <div class="logo flex gap-2 items-start">
             <div class="bg-gray-50 rounded-full p-5">
                 <i class="fa-solid fa-folder"></i>
@@ -31,7 +31,7 @@
             </div>
         </div>
     </a>
-    <a href="{{route("admin-rework.promo")}}" class="border border-primary-1 rounded-md shadow-md flex justify-around items-center p-5">
+    <a href="{{route("admin-rework.promo")}}" class="border border-primary-1 rounded-md shadow-md flex justify-around items-center p-5 flex-1">
         <div class="logo flex gap-2 items-start">
             <div class="bg-gray-50 rounded-full p-5">
                 <i class="fa-solid fa-tag"></i>
@@ -46,7 +46,7 @@
             </div>
         </div>
     </a>
-    <a href="{{route("admin-rework.supplier")}}" class="border border-primary-1 rounded-md shadow-md flex justify-around items-center p-5">
+    <a href="{{route("admin-rework.supplier")}}" class="border border-primary-1 rounded-md shadow-md flex justify-around items-center p-5 flex-1">
         <div class="logo flex gap-2 items-start">
             <div class="bg-gray-50 rounded-full p-5">
                 <i class="fa-solid fa-truck"></i>
@@ -57,6 +57,23 @@
                 </div>
                 <div class="count">
                     {{$supplier}}
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+<div class="flex gap-5 justify-around flex-auto my-5">
+    <a href="{{route("admin-rework.pos")}}" class="border border-primary-1 rounded-md shadow-md flex justify-around items-center p-5 flex-1">
+        <div class="logo flex gap-2 items-start">
+            <div class="bg-gray-50 rounded-full p-5">
+                <i class="fa-solid fa-money-bill"></i>
+            </div>
+            <div class="font-semibold">
+                <div class="font-bold">
+                    POS Count
+                </div>
+                <div class="count">
+                    {{$transaction}}
                 </div>
             </div>
         </div>

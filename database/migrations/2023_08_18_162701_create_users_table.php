@@ -18,10 +18,10 @@ class CreateUsersTable extends Migration
             $table->string("username");
             $table->string("password");
             $table->string("email");
-            $table->string("phone_int");
+            $table->string("phone");
             $table->integer("type");
-            $table->integer("deleted");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

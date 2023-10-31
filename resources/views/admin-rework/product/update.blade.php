@@ -21,7 +21,7 @@
                 <label for="price" class="text-sm font-medium">{{ __('Product Price (Rp. )') }}</label>
 
                 <input id="price" type="number" class="mt-1 p-2 border @error('price') border-red-500 @enderror
-                [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" name="price" required autocomplete="price" autofocus value="{{$product->price}}">
+                [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" name="price" required autocomplete="price" autofocus value="{{$product->unit->price}}">
 
                 @error('price')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -42,7 +42,7 @@
                 <label for="stock" class="text-sm font-medium">{{ __('Product Stocks (pcs)') }}</label>
 
                 <input id="stock" type="number" class="mt-1 p-2 border @error('stock') border-red-500 @enderror
-                [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" name="stock" required autocomplete="stock" autofocus value="{{$product->stock}}">
+                [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" name="stock" required autocomplete="stock" autofocus value="{{$product->unit->stock}}">
 
                 @error('stock')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
