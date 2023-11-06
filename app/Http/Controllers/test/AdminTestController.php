@@ -28,7 +28,6 @@ class AdminTestController extends Controller
             ["POS", "money-bill"],
             ["Unit", "barcode"],
             ["User", "user"],
-            ["Cart", "shopping-cart"],
         ]);
 
         request()->session()->put('active', "dashboard");
