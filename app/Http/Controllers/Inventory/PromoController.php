@@ -28,7 +28,7 @@ class PromoController extends Controller
      */
     public function create()
     {
-        $products = Product::all()->where("deleted", "!=", 1);
+        $products = Product::all();
         return view("admin-rework.promo.insert", compact("products"));
     }
 

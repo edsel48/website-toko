@@ -15,7 +15,6 @@ class Product extends Model
     use SoftDeletes;
 
     protected $table_name = "product";
-    protected $primary_key = "id";
 
     protected $id;
     protected $name;

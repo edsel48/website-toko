@@ -13,7 +13,6 @@ class Supplier extends Model
     use SoftDeletes;
 
     protected $table_name = "supplier";
-    protected $primary_key = "id";
     public $timestamps = false;
 
     protected $name;

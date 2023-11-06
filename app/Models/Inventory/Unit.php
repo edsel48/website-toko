@@ -13,7 +13,6 @@ class Unit extends Model
     use SoftDeletes;
 
     protected $table_name = "unit";
-    protected $primary_key = "id";
 
     protected $product_id;
 

@@ -7,7 +7,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
 </head>
-<body class="w-full h-screen bg-white">
+<body class="w-full h-screen bg-white overflow-hidden">
     <x-sidebar.sidebar>
         <x-slot name="items">
             @foreach (session()->get("items") as [$item, $icon])

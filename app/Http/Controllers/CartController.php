@@ -86,7 +86,5 @@ class CartController extends Controller
 
     function addItem(Request $request){
         $user_id = $this->getIds($request);
-
-
     }
 }

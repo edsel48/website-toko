@@ -15,7 +15,6 @@ class User extends Model
     use SoftDeletes;
 
     protected $table_name = "user";
-    protected $primary_key = "id";
 
     protected $username;
     protected $password;

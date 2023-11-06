@@ -17,6 +17,7 @@ class THeaderTable extends Migration
         Schema::create('t_headers', function (Blueprint $table) {
             $table->id();
             $table->integer("user_id");
+            $table->integer("admin_id");
             $table->string("status");
             $table->timestamps();
             $table->softDeletes();

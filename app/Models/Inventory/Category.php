@@ -13,7 +13,6 @@ class Category extends Model
     use SoftDeletes;
 
     protected $table_name = "category";
-    protected $primary_key = "id";
     public $timestamps = false;
 
     protected $name;

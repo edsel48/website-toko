@@ -104,6 +104,8 @@ class AdminTestController extends Controller
         return view(".admin-rework.transaction.index", compact("transaction"));
     }
 
+
+
     function unit(){
         request()->session()->put('active', "unit");
         $unit = Unit::all();

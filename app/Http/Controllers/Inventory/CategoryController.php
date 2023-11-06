@@ -17,7 +17,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
 
-        return view("admin/admin_category", compact("categories"));
+    return view("admin-rework.category.index", compact("categories"));
     }
 
     /**

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\user;
 
-use App\Http\Controllers\Controller;
-use App\Models\Inventory\Product;
+use App\Models\Auth\User;
 use Illuminate\Http\Request;
+use App\Models\Inventory\Product;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -18,6 +20,39 @@ class UserController extends Controller
         $products = Product::all();
 
         return view("User.index", compact("products"));
+    }
+
+    public function login()
+    {
+        return view("AUTH.login");
+    }
+
+    public function process()
+    {
+
+        $user = User::all()->where("email", request()->email)->where("password", request()->password);
+
+        if(count($user) == 0){
+            return redirect()->back();
+
+        }
+
+        $user = $user[0];
+        $user_logged = $user;
+        request()->session()->put('user_logged', $user_logged);
+
+        if($user->type == 0){
+            return redirect(route("admin-rework.index"));
+        }
+
+        return redirect(route("user.index"));
+    }
+
+    public function logout()
+    {
+        request()->session()->forget("user_logged");
+
+        return redirect(route("user.index"));
     }
 
     /**
@@ -42,6 +77,7 @@ class UserController extends Controller
     {
         // this is for deleting session for logout
         $request->session()->forget('user_logged');
+        session()->forget("product_details");
 
         return redirect(route('user.index'));
     }
@@ -54,9 +90,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
+        // $product = Product::find($id);
 
-        return view("User.product-detail", compact("product"));
+        // return view("User.product-detail", compact("product"));
     }
 
     /**

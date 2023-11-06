@@ -25,7 +25,7 @@
                 </x-button>
             </a>
             <div class="logout text-md font-semibold text-primary-1">
-                <form action="{{route('user.store')}}" method="post">
+                <form action="{{route('login.logout')}}" method="post">
                     @csrf
                     <x-button type="submit" :primary=false>
                         <x-slot name="text">

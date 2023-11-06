@@ -8358,13 +8358,21 @@ video {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
-.my-8{
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+.my-3{
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.my-4{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .my-5{
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
+}
+.my-8{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 .-mr-0{
   margin-right: -0px;
@@ -8410,6 +8418,9 @@ video {
 }
 .table{
   display: table;
+}
+.h-96{
+  height: 24rem;
 }
 .h-auto{
   height: auto;
@@ -8484,11 +8495,23 @@ video {
 .justify-around{
   justify-content: space-around;
 }
+.justify-items-end{
+  justify-items: end;
+}
 .gap-10{
   gap: 2.5rem;
 }
+.gap-16{
+  gap: 4rem;
+}
 .gap-2{
   gap: 0.5rem;
+}
+.gap-2\.5{
+  gap: 0.625rem;
+}
+.gap-28{
+  gap: 7rem;
 }
 .gap-3{
   gap: 0.75rem;
@@ -8498,6 +8521,9 @@ video {
 }
 .gap-5{
   gap: 1.25rem;
+}
+.gap-6{
+  gap: 1.5rem;
 }
 .gap-x-10{
   -moz-column-gap: 2.5rem;
@@ -8535,6 +8561,9 @@ video {
 .overflow-y-auto{
   overflow-y: auto;
 }
+.overflow-y-scroll{
+  overflow-y: scroll;
+}
 .whitespace-nowrap{
   white-space: nowrap;
 }
@@ -8555,6 +8584,9 @@ video {
 }
 .rounded-sm{
   border-radius: 0.125rem;
+}
+.rounded-xl{
+  border-radius: 0.75rem;
 }
 .rounded-l{
   border-top-left-radius: 0.25rem;
@@ -8619,6 +8651,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
+.bg-gray-200{
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
 .bg-gray-50{
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
@@ -8667,6 +8703,9 @@ video {
 }
 .p-10{
   padding: 2.5rem;
+}
+.p-14{
+  padding: 3.5rem;
 }
 .p-2{
   padding: 0.5rem;
@@ -8744,6 +8783,9 @@ video {
 .pl-5{
   padding-left: 1.25rem;
 }
+.pb-3{
+  padding-bottom: 0.75rem;
+}
 .text-left{
   text-align: left;
 }
@@ -8762,6 +8804,18 @@ video {
 .text-2xl{
   font-size: 1.5rem;
   line-height: 2rem;
+}
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.text-5xl{
+  font-size: 3rem;
+  line-height: 1;
 }
 .text-base{
   font-size: 1rem;
@@ -8838,6 +8892,10 @@ video {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-yellow-300{
+  --tw-text-opacity: 1;
+  color: rgb(253 224 71 / var(--tw-text-opacity));
 }
 .shadow-md{
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);

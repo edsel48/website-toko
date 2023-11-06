@@ -13,7 +13,6 @@ class Cart extends Model
 
     protected $table_name = "cart";
     protected $primary_key = "id";
-    public $timestamps = false;
 
     protected $user_id;
     protected $product_id;

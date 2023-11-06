@@ -25,7 +25,7 @@ Route::resource("/register", RegisterController::class);
 //2. Login
 use App\Http\Controllers\Auth\LoginController;
 
-Route::resource('/login', LoginController::class);
+// Route::resource('/login', LoginController::class);
 
 //3. Admin
 use App\Http\Controllers\Admin\AdminController;
@@ -49,14 +49,24 @@ Route::prefix("admin-resource")->group(function () {
 use App\Http\Controllers\CartController;
 
 // Carting Stuff
-Route::get("/user/mycart", [CartController::class, "myCart"])->name("my-cart");
-Route::post("/user/{product_id}", [CartController::class, "addProduct"]);
+Route::get("/user/my-cart", [CartController::class, "myCart"])->name("my-cart");
+Route::post("/user/cart/{product_id}", [CartController::class, "addProduct"]);
 
 
 //4. User Main Page
 use App\Http\Controllers\user\UserController;
 
-Route::resource("/user", UserController::class);
+// Index
+Route::get('/user', [UserController::class, "index"])->name('user.index');
+
+// Login Stuff
+Route::get('/user/login', [UserController::class, "login"])->name('login.index');
+
+Route::post('/user/login', [UserController::class, "process"])->name('login.process');
+
+Route::post('/user/logout', [UserController::class, "logout"])->name('login.logout');
+
+// Route::resource("/user", \App\Http\Controllers\user\UserController::class);
 
 
 use App\Http\Controllers\test\TestController;

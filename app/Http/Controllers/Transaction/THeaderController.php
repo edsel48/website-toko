@@ -2,12 +2,29 @@
 
 namespace App\Http\Controllers\Transaction;
 
-use App\Http\Controllers\Controller;
+use App\Models\Auth\User;
 use App\Models\Pos\THeader;
+
 use Illuminate\Http\Request;
+use App\Models\Inventory\Product;
+use App\Http\Controllers\Controller;
 
 class THeaderController extends Controller
 {
+    public function calculate_total(){
+        $data = session()->get("product_details") ?? [];
+
+        $sum = 0;
+        foreach ($data as $d) {
+            $qty = $d["qty"];
+            $p_price = $d["product"]["price"];
+
+            $sum += $p_price * $qty;
+        }
+
+        return $sum;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +32,7 @@ class THeaderController extends Controller
      */
     public function index()
     {
-        //
+        return view("admin-rework.transaction.index");
     }
 
     /**
@@ -25,8 +42,27 @@ class THeaderController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+
+        $admins = User::all()->where("type", "==", 1);
+        $users = User::all()->where("type", "==", 0);
+
+        $product_details = session()->get("product_details") ?? [];
+
+        // the expected outcome from the products are as follow :
+        // 1. Product should be listed based on the session right now probably ?
+
+        if(request()->query){
+            $data = request()->query("search");
+            $products = Product::where("name", "like", "%".$data."%")->get();
+        }
+
+        $total = $this->calculate_total();
+
+        return view("admin-rework.transaction.insert", compact("products", "admins", "users", "product_details", "total"));
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -36,7 +72,13 @@ class THeaderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $header = new THeader;
+        $header->user_id = $request->user_id;
+        $header->status = "Draft";
+
+        $header->save();
+
+        return redirect(route("admin-rework.transaction"));
     }
 
     /**
@@ -48,6 +90,9 @@ class THeaderController extends Controller
     public function show($id)
     {
         //
+        $header = THeader::find($id);
+
+        return view("admin-rework.transaction.update", compact("header"));
     }
 
     /**
@@ -58,7 +103,11 @@ class THeaderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $header = THeader::find($id);
+
+        $details = $header->details();
+
+        return view("admin-rework.transaction.update", compact("header"));
     }
 
     /**
@@ -70,7 +119,13 @@ class THeaderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $header = new THeader;
+        $header->user_id = $request->user_id;
+        $header->status = $request->status;
+
+        $header->save();
+
+        return redirect(route("admin-rework.transaction"));
     }
 
     /**
