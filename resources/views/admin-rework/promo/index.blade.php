@@ -77,7 +77,7 @@
                         </td>
                         <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                             <div class="p-3">
-                                {{$cat->min_purchase}} pcs
+                                {{implode("." , explode(";", number_format($cat->min_purchase, 0, "", ";")))}} pcs
                             </div>
                         </td>
                         <td>
@@ -85,9 +85,6 @@
                                 <form action="{{ route("promo.edit", $cat->id)}}" method="GET">
                                     <button class="border border-primary-1 p-2 bg-yellow-50 rounded-lg" type="submit">
                                         <i class="fa-solid fa-pen"></i>
-                                        <span class="ml-2">
-                                            Update
-                                        </span>
                                     </button>
                                 </form>
 
@@ -96,9 +93,6 @@
                                     @method('delete')
                                     <button class="border border-primary-1 p-2 bg-red-50 rounded-lg" type="submit">
                                         <i class="fa-solid fa-trash"></i>
-                                        <span class="ml-2">
-                                            Delete
-                                        </span>
                                     </button>
                                 </form>
                             </div>

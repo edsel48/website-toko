@@ -1,22 +1,9 @@
-@extends('../admin-rework/rework')
-
-@section('content')
+@extends("../admin-rework/rework")
+@section("content")
 <div class="flex justify-center flex-col gap-3">
     <div class="flex w-full justify-between items-center p-2 gap-10">
         <div class="flex left flex-1 items-center">
             <x-search></x-search>
-        </div>
-        <div class="right">
-            <a href="{{route("product.create")}}" class="w-full">
-                <x-button primary={{false}}>
-                    <x-slot name="text">
-                        <i class="fa-solid fa-plus"></i>
-                        <span class="ml-3">
-                            Create New Product
-                        </span>
-                    </x-slot>
-                </x-button>
-            </a>
         </div>
     </div>
     <x-table.table>
@@ -24,16 +11,13 @@
             <x-table.thead>
                 <x-slot name="row">
                     <th class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                        Product Image
+                        User ID
                     </th>
                     <th class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                        Product Name
+                        Username
                     </th>
-                    <th class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                        Product Stock
-                    </th>
-                    <th class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                        Description
+                    <th class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
+                        User Type
                     </th>
                     <th class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-right">
                         Action
@@ -43,48 +27,64 @@
         </x-slot>
         <x-slot name="body">
             <tbody class="pl-5 rounded">
-                @forelse ($products as $cat)
+                @forelse ($users as $user)
                 <tr>
                     <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         <div class="p-3">
-                            <img src="{{$cat->img == "" ? "https://placehold.co/300x200" : $cat->img}}" alt="" srcset="" class="h-28 w-auto">
+                            {{$user->id}}
                         </div>
                     </td>
                     <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         <div class="p-3">
-                            {{$cat->name}}
+                            {{$user->username}}
                         </div>
                     </td>
                     <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         <div class="p-3">
-                            {{implode("." , explode(";", number_format($cat->unit->stock, 0, "", ";")))}} pcs
+                            @switch($user->type)
+                                @case(0)
+                                    <div class="px-2 py-1 bg-teal-100 text-teal-800 flex justify-center items-center rounded-full">
+                                        {{ "SUPER ADMIN" }}
+                                    </div>
+                                    @break
+                                @case(1)
+                                    <div class="px-2 py-1 bg-yellow-50 text-yellow-600 flex justify-center items-center rounded-full">
+                                        {{ "USER" }}
+                                    </div>
+                                    @break
+                                @default
+                                    {{ "UNKNOWN" }}
+                            @endswitch
                         </div>
                     </td>
-                    <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                        <div class="p-3">
-                            {{$cat->description}}
-                        </div>
-                    </td>
-
                     <td>
                         <div class="flex justify-end items-center gap-2 px-5">
-                            {{-- <a href="{{ route("product.show", $cat->id) }}">
-                                <button class="border border-primary-1 p-2 bg-green-50 rounded-lg" type="submit">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                    <span class="ml-2">
-                                        Detail
-                                    </span>
-                                </button>
-                            </a> --}}
-                            <form action="{{ route("product.edit", $cat->id)}}" method="GET">
-                                <button class="border border-primary-1 p-2 bg-yellow-50 rounded-lg" type="submit">
-                                    <i class="fa-solid fa-pen"></i>
-                                    <span class="ml-2">
-                                        Update
-                                    </span>
-                                </button>
-                            </form>
-                            <form action="{{ route("product.destroy", $cat->id)}}" method="POST">
+                            @switch($user->type)
+                                @case(0)
+                                    <form action="{{ route("admin-rework.upgrade", $user->id)}}" method="GET">
+                                        <button class="border border-primary-1 p-2 bg-yellow-50 rounded-lg" type="submit">
+                                            <i class="fa-solid fa-caret-down"></i>
+                                            <span class="ml-2">
+                                                Downgrade to User
+                                            </span>
+                                        </button>
+                                    </form>
+                                    @break
+                                @case(1)
+                                    <form action="{{ route("admin-rework.upgrade", $user->id)}}" method="GET">
+                                        <button class="border border-primary-1 p-2 bg-yellow-50 rounded-lg" type="submit">
+                                            <i class="fa-solid fa-caret-up"></i>
+                                            <span class="ml-2">
+                                                Upgrade to Admin
+                                            </span>
+                                        </button>
+                                    </form>
+                                    @break
+                                @default
+                                    {{ "UNKNOWN" }}
+                            @endswitch
+
+                            <form action="{{ route("user.destroy", $user->id)}}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button class="border border-primary-1 p-2 bg-red-50 rounded-lg" type="submit">
@@ -99,7 +99,7 @@
                 </tr>
                 @empty
                     <th colspan="8" class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-center">
-                        No Product Found
+                        No User Found
                     </th>
                 @endforelse
             </tbody>

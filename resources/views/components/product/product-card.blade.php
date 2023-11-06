@@ -3,7 +3,7 @@
         {{$name}}
     </div>
     <div class="text-primary-2 font-semibold">
-        Rp {{(int)$price/ 1000}}k
+        Rp {{ $price }}
     </div>
     <div class="flex justify-center items-center w-full h-auto rounded-sm overflow-hidden">
         <img src="{{$img}}" alt="{{$name}}">

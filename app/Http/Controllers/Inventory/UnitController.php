@@ -58,7 +58,9 @@ class UnitController extends Controller
      */
     public function edit($id)
     {
-        //
+        $unit = Unit::find($id);
+
+        return view("admin-rework.unit.update", compact("unit"));
     }
 
     /**
@@ -70,7 +72,18 @@ class UnitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $unit = Unit::find($id);
+
+        $unit->stock = request()->stock;
+        $unit->price = request()->price;
+        $unit->length = request()->length;
+        $unit->width = request()->width;
+        $unit->height = request()->height;
+        $unit->weight = request()->weight;
+
+        $unit->save();
+
+        return redirect(route("admin-rework.unit"));
     }
 
     /**
@@ -83,6 +96,6 @@ class UnitController extends Controller
     {
         Unit::find($id)->delete();
 
-        dd("haha");
+        return redirect(route("admin-rework.unit"));
     }
 }

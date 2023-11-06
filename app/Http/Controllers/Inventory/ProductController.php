@@ -57,13 +57,10 @@ class ProductController extends Controller
 
         $product->save();
 
-        $id = $product->id;
-
         $unit = new Unit;
-        $unit->product_id = $id;
+        $unit->product_id = $product->id;
         $unit->stock = $request->stock;
         $unit->price = $request->price;
-
         $unit->length = 0;
         $unit->width = 0;
         $unit->height = 0;
@@ -71,8 +68,7 @@ class ProductController extends Controller
 
         $unit->save();
 
-
-        return redirect(route("admin-rework.product"));
+        return redirect(route("unit.edit", $unit->id));
     }
 
     /**

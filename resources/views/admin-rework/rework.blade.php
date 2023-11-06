@@ -7,7 +7,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
 </head>
-<body class="w-full h-screen bg-white overflow-hidden">
+<body class="w-full h-screen bg-white">
     <x-sidebar.sidebar>
         <x-slot name="items">
             @foreach (session()->get("items") as [$item, $icon])
@@ -22,7 +22,7 @@
             @endforeach
         </x-slot>
     </x-sidebar.sidebar>
-    <div class="p-4 sm:ml-64">
+    <div class="p-4 sm:ml-64 overflow-y-scroll h-full">
         @yield("content")
     </div>
 </body>

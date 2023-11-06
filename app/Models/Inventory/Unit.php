@@ -18,7 +18,6 @@ class Unit extends Model
 
     protected $stock;
     protected $price;
-
     protected $length;
     protected $width;
     protected $height;

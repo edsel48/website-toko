@@ -30,6 +30,16 @@ class CartController extends Controller
         return -1;
     }
 
+    function add()
+    {
+
+    }
+
+    function reduce()
+    {
+
+    }
+
     function addProduct(Request $request)
     {
 
@@ -73,7 +83,7 @@ class CartController extends Controller
         foreach ($carts as $cart) {
             $product = Product::find($cart->product_id);
 
-            $totals += $product->price * $cart->qty;
+            $totals += $product->unit->price * $cart->qty;
 
             $products[] = [$product, $cart->qty];
         }

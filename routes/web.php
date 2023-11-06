@@ -50,7 +50,7 @@ use App\Http\Controllers\CartController;
 
 // Carting Stuff
 Route::get("/user/my-cart", [CartController::class, "myCart"])->name("my-cart");
-Route::post("/user/cart/{product_id}", [CartController::class, "addProduct"]);
+Route::post("/user/cart/{product_id}", [CartController::class, "addProduct"])->name("cart.add");
 
 
 //4. User Main Page
@@ -66,7 +66,7 @@ Route::post('/user/login', [UserController::class, "process"])->name('login.proc
 
 Route::post('/user/logout', [UserController::class, "logout"])->name('login.logout');
 
-// Route::resource("/user", \App\Http\Controllers\user\UserController::class);
+Route::resource("/user", UserController::class);
 
 
 use App\Http\Controllers\test\TestController;
@@ -85,6 +85,8 @@ Route::prefix("admin")->group(function(){
     Route::get("/pos", [AdminTestController::class, "pos"])->name("admin-rework.pos");
     Route::get("/unit", [AdminTestController::class, "unit"])->name("admin-rework.unit");
     Route::get("/cart", [AdminTestController::class, "index"])->name("admin-rework.cart");
-    Route::get("/user", [AdminTestController::class, "index"])->name("admin-rework.user");
+    Route::get("/user", [AdminTestController::class, "user"])->name("admin-rework.user");
+
+    Route::get("/upgrade/{id}", [AdminTestController::class, "upgrade"])->name("admin-rework.upgrade");
 });
 

@@ -39,10 +39,10 @@
                 </div>
             </td>
             <td class="whitespace-nowrap px-6 py-4 font-medium">
-                Rp {{$product[0]->price}}
+                Rp {{$product[0]->unit->price}}
             </td>
             <td class="whitespace-nowrap px-6 py-4 font-medium">
-                Rp {{$product[0]->price * $product[1]}}
+                Rp {{$product[0]->unit->price * $product[1]}}
             </td>
         </tr>
         @empty

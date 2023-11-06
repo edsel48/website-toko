@@ -6,18 +6,6 @@
         <div class="flex left flex-1 items-center">
             <x-search></x-search>
         </div>
-        <div class="right">
-            <a href="{{route("unit.create")}}" class="w-full">
-                <x-button primary={{false}}>
-                    <x-slot name="text">
-                        <i class="fa-solid fa-plus"></i>
-                        <span class="ml-3">
-                            Create New Unit
-                        </span>
-                    </x-slot>
-                </x-button>
-            </a>
-        </div>
     </div>
     <x-table.table>
         <x-slot name="head">
@@ -33,7 +21,7 @@
                         Price
                     </th>
                     <th class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                        Heigth
+                        Height
                     </th>
                     <th class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         Length
@@ -61,32 +49,32 @@
                     </td>
                     <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         <div class="p-3">
-                            {{$cat->stock}} Pcs
+                            {{implode("." , explode(";", number_format($cat->stock, 0, "", ";")))}} pcs
                         </div>
                     </td>
                     <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         <div class="p-3">
-                            Rp {{$cat->price}}
+                            Rp {{ implode("." , explode(";", number_format($cat->price, 0, "", ";"))) }}
                         </div>
                     </td>
                     <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         <div class="p-3">
-                            Rp {{$cat->height}}
+                            {{$cat->height}} cm
                         </div>
                     </td>
                     <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         <div class="p-3">
-                            {{$cat->length}}
+                            {{$cat->length}} cm
                         </div>
                     </td>
                     <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         <div class="p-3">
-                            {{$cat->width}}
+                            {{$cat->width}} cm
                         </div>
                     </td>
                     <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         <div class="p-3">
-                            {{$cat->height}}
+                            {{$cat->weight}} kg
                         </div>
                     </td>
                     <td>
@@ -99,17 +87,6 @@
                                     </span>
                                 </button>
                             </form>
-
-                            {{-- <form action="{{ route("unit.destroy", $cat)}}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button class="border border-primary-1 p-2 bg-red-50 rounded-lg" type="submit">
-                                    <i class="fa-solid fa-trash"></i>
-                                    <span class="ml-2">
-                                        Delete
-                                    </span>
-                                </button>
-                            </form> --}}
                         </div>
                     </td>
                 </tr>

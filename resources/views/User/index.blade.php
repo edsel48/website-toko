@@ -32,7 +32,7 @@
         </div>
         <div class="flex gap-10 w-full flex-wrap justify-between px-8">
             @foreach ($products as $product)
-            <x-product.product-card name="{{$product->name}}" price="{{$product->price}}"
+            <x-product.product-card name="{{$product->name}}" price="{{$product->unit->price}}"
                 stock="{{$product->stock}}" id="{{$product->id}}" />
             @endforeach
         </div>

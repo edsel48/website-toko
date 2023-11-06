@@ -72,7 +72,11 @@ class PromoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cat = Promo::find($id);
+        $products = Product::all();
+
+        return view("admin-rework.promo.update", compact("cat", "products"));
+
     }
 
     /**
@@ -84,7 +88,18 @@ class PromoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $promo = Promo::find($id);
+
+        $promo->name = $request->name;
+        $promo->product_id = $request->product_id;
+        $promo->start_date = $request->start_date;
+        $promo->end_date = $request->end_date;
+        $promo->discount = $request->discount;
+        $promo->min_purchase = $request->min_purchase;
+
+        $promo->save();
+
+        return redirect(route("admin-rework.promo"));
     }
 
     /**
@@ -96,5 +111,7 @@ class PromoController extends Controller
     public function destroy($id)
     {
         Promo::find($id)->delete();
+
+        return redirect(route("admin-rework.promo"));
     }
 }

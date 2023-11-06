@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\test;
 
-use App\Http\Controllers\Controller;
-use App\Models\Inventory\Category;
+use App\Models\Auth\User;
 use App\Models\Pos\THeader;
+use Illuminate\Http\Request;
+use App\Models\Inventory\Unit;
 use App\Models\Inventory\Promo;
 use App\Models\Inventory\Product;
-use App\Models\Inventory\Unit;
+use App\Models\Inventory\Category;
 use App\Models\Inventory\Supplier;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminTestController extends Controller
 {
@@ -26,8 +27,8 @@ class AdminTestController extends Controller
             ["Supplier", "truck-field"],
             ["POS", "money-bill"],
             ["Unit", "barcode"],
-            ["Cart", "shopping-cart"],
             ["User", "user"],
+            ["Cart", "shopping-cart"],
         ]);
 
         request()->session()->put('active', "dashboard");
@@ -37,9 +38,12 @@ class AdminTestController extends Controller
         $promo = count(Promo::all());
         $supplier = count(Supplier::all());
         $transaction = count(THeader::all());
+        $user = count(User::all());
+        $unit = count(Unit::all());
 
 
-        return view("admin-rework.dashboard", compact("product", "category", "promo", "supplier", "transaction"));
+        return view("admin-rework.dashboard",
+        compact("product", "category", "promo", "supplier", "transaction", "user", "unit"));
     }
 
     function category(){
@@ -104,17 +108,33 @@ class AdminTestController extends Controller
         return view(".admin-rework.transaction.index", compact("transaction"));
     }
 
-
-
     function unit(){
         request()->session()->put('active', "unit");
         $unit = Unit::all();
 
-        // if(request()->query){
-        //     $data = request()->query("search");
-        //     $transaction = THeader::where("status", "like", "%".$data."%")->get();
-        // }
-
         return view(".admin-rework.unit.index", compact("unit"));
+    }
+
+    function user(){
+        request()->session()->put("active", "user");
+        $users = User::all();
+
+        if(request()->query){
+            $data = request()->query("search");
+            $users = User::where("username", "like", "%".$data."%")->get();
+        }
+
+        return view("admin-rework.user.index", compact("users"));
+    }
+
+    function upgrade(){
+        $user = User::find(request()->id);
+        if($user->type == 0) $user->type = 1;
+        elseif ($user->type == 1) $user->type = 0;
+
+
+        $user->save();
+
+        return redirect(route("admin-rework.user"));
     }
 }

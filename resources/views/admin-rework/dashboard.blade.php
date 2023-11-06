@@ -78,5 +78,36 @@
             </div>
         </div>
     </a>
+    <a href="{{route("admin-rework.user")}}" class="border border-primary-1 rounded-md shadow-md flex justify-around items-center p-5 flex-1">
+        <div class="logo flex gap-2 items-start">
+            <div class="bg-gray-50 rounded-full p-5">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="font-semibold">
+                <div class="font-bold">
+                    User Count
+                </div>
+                <div class="count">
+                    {{$user}}
+                </div>
+            </div>
+        </div>
+    </a>
+    <a href="{{route("admin-rework.unit")}}" class="border border-primary-1 rounded-md shadow-md flex justify-around items-center p-5 flex-1">
+        <div class="logo flex gap-2 items-start">
+            <div class="bg-gray-50 rounded-full p-5">
+                <i class="fa-solid fa-barcode"></i>
+            </div>
+            <div class="font-semibold">
+                <div class="font-bold">
+                    Unit Count
+                </div>
+                <div class="count">
+                    {{$unit}}
+                </div>
+            </div>
+        </div>
+    </a>
 </div>
+
 @endsection
