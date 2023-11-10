@@ -1,0 +1,33 @@
+User : 
+	- Carting System
+	- Login Register
+	- Company Profile
+	- Whatsapp Integration (footer)
+
+Admin : 
+	User : 
+		- Upgrade user to admin
+		- Degrade admin to user
+
+	Promo : 
+		- Add Promo
+
+		Product : 
+			- Add Product 
+
+			Unit : 
+				- Add Unit
+
+			Size : 
+				- Add Size
+
+			Category : 
+				- Add Category
+
+			Supplier : 
+				- Add Supplier
+
+	CMS : 
+		- Add CMS for User Pages
+		- [HEADER, PRODUCT, REVIEW, QUALITY, INSTAGRAM]
+
