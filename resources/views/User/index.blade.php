@@ -7,6 +7,7 @@
         <div class="left image flex-1">
             <img src="https://placeholder.co/800x600" alt="" class="rounded-xl">
         </div>
+        <!-- TODO: CMS HEADER PART -->
         <div class="right flex flex-col flex-1 gap-5 justify-between">
             <div class="text-5xl text-primary-1 font-semibold">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ratione dolore temporibus amet necessitatibus iste optio quaerat ut asperio
@@ -25,19 +26,22 @@
                 </x-button>
             </div>
         </div>
+
     </div>
     <div class="h-screen">
         <div class="font-bold text-4xl text-primary-1 item-start my-8">
             Product Kami
         </div>
+        <!-- TODO: CMS PRODUCT PART (START) -->
         <div class="flex gap-10 w-full flex-wrap justify-between px-8">
             @foreach ($products as $product)
-            <x-product.product-card name="{{$product->name}}" price="{{$product->unit->price}}"
+            <x-product.product-card name="{{$product->name}}" price="{{$product->unit[0]->price}}"
                 stock="{{$product->stock}}" id="{{$product->id}}" />
             @endforeach
         </div>
     </div>
     <div class="reviews p-14 flex flex-col justify-center items-center gap-5">
+        <!-- TODO: CMS REVIEW PART (START) -->
         <div class="review text-lg text-center">
             <span>"</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, saepe natus. Inventore vitae quisquam tempora recusandae expedita dolores soluta porro numquam commodi placeat hic perspiciatis maxime consequatur, rem unde. Vel!
             <span>"</span>
@@ -57,6 +61,7 @@
         </div>
     </div>
     <div class="flex flex-col items-center gap-16 h-screen">
+        <!-- TODO: CMS QUALITY PART (START) -->
         <div class="text-4xl text-primary-1 font-bold">
             Quality Without Promise
         </div>
@@ -96,6 +101,8 @@
         </div>
     </div>
     <div class="my-10 text-center h-screen">
+        <!-- TODO: CMS INSTAGRAM PART (START) -->
+
         <div class="text-4xl text-primary-1 font-bold my-10">
             Our Instagram
         </div>

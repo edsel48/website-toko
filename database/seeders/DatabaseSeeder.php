@@ -56,6 +56,8 @@ class DatabaseSeeder extends Seeder
             $category->save();
         }
 
+
+        // create product
         $product = new Product;
         $product->name = "product";
         $product->description = "description";
@@ -114,6 +116,36 @@ class DatabaseSeeder extends Seeder
         $size->height = 12;
         $size->weight = 14.4;
         $size->save();
+
+        // create bulk products
+        for($i = 2; $i <= 4; $i++){
+            $product = new Product;
+            $product->name = "product-" . $i;
+            $product->description = "description-" . $i;
+            $product->img = "";
+            $product->stock = 288;
+            $product->category_id = $i;
+            $product->supplier_id = $i;
+            $product->save();
+
+            //unit
+            $unit = new Unit;
+            $unit->product_id = $product->id;
+            $unit->unit_name = "pcs";
+            $unit->price = 100;
+            $unit->quantity = 1;
+            $unit->level = 1;
+            $unit->save();
+
+            //size
+            $size = new Size;
+            $size->unit_id = $unit->id;
+            $size->length = 1;
+            $size->width = 1;
+            $size->height = 1;
+            $size->weight = 0.1;
+            $size->save();
+        }
 
         // create promo
         $promo = new Promo;
