@@ -1,6 +1,6 @@
 @extends("../admin-rework/rework")
 @section("content")
-
+<!-- TODO: CHANGE VIEW AND DATA SHOWN IN HERE BASED ON MODEL -->
 <div class="flex justify-center flex-col gap-3">
     <div class="flex w-full justify-between items-center p-2 gap-10">
         <div class="flex left flex-1 items-center">

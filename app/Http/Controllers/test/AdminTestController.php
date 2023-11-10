@@ -5,6 +5,7 @@ namespace App\Http\Controllers\test;
 use App\Models\Auth\User;
 use App\Models\Pos\THeader;
 use Illuminate\Http\Request;
+use App\Models\Inventory\Size;
 use App\Models\Inventory\Unit;
 use App\Models\Inventory\Promo;
 use App\Models\Inventory\Product;
@@ -26,7 +27,6 @@ class AdminTestController extends Controller
             ["Promo", "tag"],
             ["Supplier", "truck-field"],
             ["POS", "money-bill"],
-            ["Unit", "barcode"],
             ["User", "user"],
         ]);
 
@@ -135,5 +135,63 @@ class AdminTestController extends Controller
         $user->save();
 
         return redirect(route("admin-rework.user"));
+    }
+
+    function addUnit(){
+        $unit = new Unit;
+
+        $product = Product::find(request()->id);
+        $last = $product->unit->last()->level + 1;
+
+        $unit->product_id = request()->id;
+        $unit->unit_name = "";
+        $unit->price = 0;
+        $unit->quantity = 0;
+        $unit->level =  $last;
+
+        $unit->save();
+
+        $size = new Size;
+
+        $size->unit_id = $unit->id;
+        $size->length = 0;
+        $size->width = 0;
+        $size->height = 0;
+        $size->weight = 0;
+
+        $size->save();
+
+        return redirect()->back();
+    }
+
+    function saveUnit(){
+        foreach (request()->session()->get("units") as $unit)
+        {
+            $unit = Unit::find($unit->id);
+
+            $unit->unit_name = request("unit_name_" . $unit->id);
+            $unit->price = request("price_" . $unit->id);
+            $unit->quantity = request("quantity_" . $unit->id);
+            $unit->level = request("level_" . $unit->id);
+
+            $unit->size->length = request( "length" . "_". $unit->id);
+            $unit->size->width = request(   "width" . "_". $unit->id);
+            $unit->size->height = request( "height" . "_". $unit->id);
+            $unit->size->weight = request( "weight" . "_". $unit->id);
+
+            $unit->size->save();
+
+            $unit->save();
+        }
+
+        return redirect()->back();
+    }
+
+    function deleteUnit(){
+        $unit = Unit::find(request()->id);
+
+        $unit->delete();
+
+        return redirect()->back();
     }
 }

@@ -37,7 +37,7 @@ class UserController extends Controller
 
         }
 
-        $user = $user[0];
+        $user = $user->first();
         $user_logged = $user;
         request()->session()->put('user_logged', $user_logged);
 

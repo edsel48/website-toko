@@ -1,6 +1,9 @@
 @extends("../admin-rework/rework")
 
 @section("content")
+
+    <!-- TODO: CHANGE VIEW AND DATA SHOWN IN HERE BASED ON MODEL -->
+
     <div class="text-3xl font-bold">
         Update {{ $unit->product->name }} Units
     </div>

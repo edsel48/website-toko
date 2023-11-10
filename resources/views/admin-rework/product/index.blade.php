@@ -57,7 +57,7 @@
                     </td>
                     <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                         <div class="p-3">
-                            {{implode("." , explode(";", number_format($cat->unit->stock, 0, "", ";")))}} pcs
+                            {{implode("." , explode(";", number_format($cat->stock, 0, "", ";")))}} pcs
                         </div>
                     </td>
                     <td class="px-6 align-middle border border-solid border-blueGray-100 py-3 text-md border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">

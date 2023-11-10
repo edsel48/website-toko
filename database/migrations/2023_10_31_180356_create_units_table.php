@@ -17,13 +17,12 @@ class CreateUnitsTable extends Migration
             $table->id();
             $table->integer("product_id");
 
-            $table->integer("stock");
-            $table->integer("price");
+            $table->string("unit_name");
 
-            $table->integer("height");
-            $table->integer("width");
-            $table->integer("length");
-            $table->integer("weight");
+            $table->integer("price");
+            $table->integer("level");
+
+            $table->integer("quantity");
 
             $table->timestamps();
             $table->softDeletes();

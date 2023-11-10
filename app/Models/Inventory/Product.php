@@ -2,6 +2,8 @@
 
 namespace App\Models\Inventory;
 
+use App\Models\Inventory\Size;
+use App\Models\Inventory\Unit;
 use App\Models\Inventory\Promo;
 use App\Models\Inventory\Category;
 use App\Models\Inventory\Supplier;
@@ -22,6 +24,7 @@ class Product extends Model
     protected $id;
     protected $name;
     protected $description;
+    protected $stock;
     protected $img;
 
     protected $category_id;
@@ -42,8 +45,8 @@ class Product extends Model
         return $this->hasMany(Promo::class, 'product_id');
     }
 
-    public function unit(): HasOne
+    public function unit(): HasMany
     {
-        return $this->hasOne(Unit::class, "product_id");
+        return $this->hasMany(Unit::class, "product_id");
     }
 }

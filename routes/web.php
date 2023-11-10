@@ -88,5 +88,10 @@ Route::prefix("admin")->group(function(){
     Route::get("/user", [AdminTestController::class, "user"])->name("admin-rework.user");
 
     Route::get("/upgrade/{id}", [AdminTestController::class, "upgrade"])->name("admin-rework.upgrade");
+
+    Route::get('/add/unit/{id}', [AdminTestController::class, 'addUnit'])->name('admin-rework.add.unit');
+    Route::post('/edit/unit/', [AdminTestController::class, 'saveUnit'])->name('admin-rework.save.unit');
+    Route::get('/delete/unit/{id}', [AdminTestController::class, 'deleteUnit'])->name('admin-rework.delete.unit');
+
 });
 

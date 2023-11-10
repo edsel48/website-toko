@@ -2,10 +2,13 @@
 
 namespace App\Models\Inventory;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Inventory\Size;
+use App\Models\Inventory\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Unit extends Model
 {
@@ -16,16 +19,20 @@ class Unit extends Model
 
     protected $product_id;
 
-    protected $stock;
+    protected $unit_name;
     protected $price;
-    protected $length;
-    protected $width;
-    protected $height;
-    protected $weight;
+    protected $quantity;
+    protected $level;
+
 
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function size(): HasOne
+    {
+        return $this->hasOne(Size::class, 'unit_id');
     }
 
 }

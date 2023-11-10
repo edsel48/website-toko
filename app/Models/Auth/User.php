@@ -23,6 +23,8 @@ class User extends Model
     protected $type;
     protected $deleted;
 
+    protected $fillable = ['username', "password", "email", "phone", "type"];
+
     public $timestamps = true;
 
     public function transaction(): HasMany
