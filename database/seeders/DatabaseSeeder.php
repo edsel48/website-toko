@@ -10,6 +10,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Inventory\Product;
 use App\Models\Inventory\Category;
 use App\Models\Inventory\Supplier;
+use App\Models\Content\ContentManagementSystem;
 
 class DatabaseSeeder extends Seeder
 {
@@ -157,6 +158,68 @@ class DatabaseSeeder extends Seeder
         $promo->discount = 10;
         $promo->min_purchase = 1;
         $promo->save();
+
+        // create Content Management System procedure
+
+        // REFERENCES
+        // enum("place", ["HEADER", "PRODUCT", "REVIEW", "QUALITY", "INSTAGRAM"]);
+
+        // for header
+        $header_cms = new ContentManagementSystem;
+
+        $header_cms->place = "HEADER";
+        $header_cms->header = "TEST HEADER";
+        $header_cms->description = "TEST DESCRIPTION";
+
+        $header_cms->save();
+
+        // for products
+        for($i = 1; $i <= 4; $i++){
+            $product_cms = new ContentManagementSystem;
+
+            $product_cms->place = "PRODUCT";
+
+            $product_cms->product_id = $i;
+
+            $product_cms->save();
+        }
+
+        // for review
+        $review_cms = new ContentManagementSystem;
+
+        $review_cms->place = "REVIEW";
+
+        $review_cms->img = "https://placeholder.com/50";
+        $review_cms->header = "Test Reviewer";
+        $review_cms->description = "Good Review testing 1234";
+
+        $review_cms->save();
+
+        // for quality
+        $icons = ["fa fa-check", "fa fa-coffee", "fa fa-cube"];
+
+        for($i = 0; $i < 3; $i++){
+            $quality_cms = new ContentManagementSystem;
+
+            $quality_cms->img = $icons[$i];
+            $quality_cms->place = "QUALITY";
+
+            $quality_cms->header = "Test Quality Header";
+            $quality_cms->description = "Description";
+
+            $quality_cms->save();
+        }
+
+        // For Instagram
+        for($i = 0; $i < 5; $i++){
+            $instagram_cms = new ContentManagementSystem;
+
+            $instagram_cms->img = "https://placeholder.com/200";
+
+            $instagram_cms->place = "INSTAGRAM";
+
+            $instagram_cms->save();
+        }
 
     }
 }

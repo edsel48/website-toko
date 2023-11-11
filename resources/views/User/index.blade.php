@@ -7,13 +7,12 @@
         <div class="left image flex-1">
             <img src="https://placeholder.co/800x600" alt="" class="rounded-xl">
         </div>
-        <!-- TODO: CMS HEADER PART -->
         <div class="right flex flex-col flex-1 gap-5 justify-between">
             <div class="text-5xl text-primary-1 font-semibold">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ratione dolore temporibus amet necessitatibus iste optio quaerat ut asperio
+                {{ $header->header }}
             </div>
             <div class="text-xl text-primary-2">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere placeat dolorum temporibus quis, perferendis architecto natus vero, dolore eum recusandae earum quasi, necessitatibus odit non eius obcaecati vel atque facilis?
+                {{ $header->description }}
             </div>
             <div class="button">
                 <x-button primary={{false}}>
@@ -43,7 +42,7 @@
     <div class="reviews p-14 flex flex-col justify-center items-center gap-5">
         <!-- TODO: CMS REVIEW PART (START) -->
         <div class="review text-lg text-center">
-            <span>"</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, saepe natus. Inventore vitae quisquam tempora recusandae expedita dolores soluta porro numquam commodi placeat hic perspiciatis maxime consequatur, rem unde. Vel!
+            <span>"</span> {{ $review->description }}
             <span>"</span>
         </div>
         <div class="stars text-yellow-300">
@@ -51,12 +50,12 @@
                 <i class="fa-solid fa-star"></i>
             @endfor
         </div>
-        <div class="image">
-            <div class="rounded-full">
-                <img src="https://placeholder.com/100" alt="" class="rounded-full">
+        <div class="image text-center">
+            <div class="rounded-full w-full text-center flex flex-col justify-center items-center">
+                <img src="{{ $review->img }}" alt="" class="rounded-full">
             </div>
             <div class="name text-lg font-semibold my-4 text-center">
-                Reviewer
+                {{ $review->header }}
             </div>
         </div>
     </div>
@@ -66,39 +65,23 @@
             Quality Without Promise
         </div>
         <div class="flex justify-around items-center gap-28">
-            @for ($i = 0; $i < 3; $i++)
+            @foreach ($qualities as $quality)
             <div class="card flex flex-col gap-2.5 w-auto flex-1 text-center">
                 <div class="image">
                     <div class="bg-gray-200 rounded-full p-5 flex justify-center items-center">
-                        <i class="fa-solid fa-stop text-4xl text-primary-1"></i>
+                        <i class="{{ $quality->img }} text-4xl text-primary-1"></i>
                     </div>
                 </div>
                 <div class="font-semibold text-xl">
-                    Test Something
+                    {{ $quality->header }}
                 </div>
                 <div class="text-lg">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam exercitationem excepturi illo rerum officia facilis neque impedit esse, dolore debitis sed expedita vitae possimus saepe unde quaerat aperiam iste eius!
+                    {{ $quality->description }}
                 </div>
             </div>
-            @endfor
+            @endforeach
         </div>
-        <div class="flex justify-between items-center gap-28">
-            @for ($i = 0; $i < 2; $i++)
-            <div class="card flex flex-col gap-2.5 w-auto flex-1 text-center">
-                <div class="image">
-                    <div class="bg-gray-200 rounded-full p-5 flex justify-center items-center">
-                        <i class="fa-solid fa-stop text-4xl text-primary-1"></i>
-                    </div>
-                </div>
-                <div class="font-semibold text-xl">
-                    Test Something
-                </div>
-                <div class="text-lg">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam exercitationem excepturi illo rerum officia facilis neque impedit esse, dolore debitis sed expedita vitae possimus saepe unde quaerat aperiam iste eius!
-                </div>
-            </div>
-            @endfor
-        </div>
+
     </div>
     <div class="my-10 text-center h-screen">
         <!-- TODO: CMS INSTAGRAM PART (START) -->
@@ -107,11 +90,11 @@
             Our Instagram
         </div>
         <div class="carousel flex gap-5 justify-around items-center">
-            @for ($i = 0; $i < 5; $i++)
-            <div class="card border border-primary-1 rounded-xl overflow-hidden">
-                <img src="https://placeholder.com/200" alt="500">
-            </div>
-            @endfor
+            @foreach ($instagram as $insta)
+                <div class="card border border-primary-1 rounded-xl overflow-hidden">
+                    <img src="{{ $insta->img }}" alt="500">
+                </div>
+            @endforeach
         </div>
         <div class="button  my-10">
             <a href="">

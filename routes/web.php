@@ -18,23 +18,23 @@ Route::get('/', function () {
 });
 
 //1. REGISTER
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CartController;
 
 Route::resource("/register", RegisterController::class);
 
 //2. Login
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\test\TestController;
 
 // Route::resource('/login', LoginController::class);
 
 //3. Admin
+use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Inventory\CategoryController;
-use App\Http\Controllers\Inventory\ProductController;
-use App\Http\Controllers\Inventory\PromoController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Inventory\UnitController;
-use App\Http\Controllers\Transaction\THeaderController;
-use App\Http\Controllers\Inventory\SupplierController;
+use App\Http\Controllers\test\AdminTestController;
+use App\Http\Controllers\Inventory\PromoController;
 
 Route::prefix("admin-resource")->group(function () {
     Route::resource("/", AdminController::class);
@@ -46,7 +46,7 @@ Route::prefix("admin-resource")->group(function () {
     Route::resource("/unit", UnitController::class);
 });
 
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\Inventory\ProductController;
 
 // Carting Stuff
 Route::get("/user/my-cart", [CartController::class, "myCart"])->name("my-cart");
@@ -54,7 +54,7 @@ Route::post("/user/cart/{product_id}", [CartController::class, "addProduct"])->n
 
 
 //4. User Main Page
-use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\Inventory\CategoryController;
 
 // Index
 Route::get('/user', [UserController::class, "index"])->name('user.index');
@@ -69,11 +69,12 @@ Route::post('/user/logout', [UserController::class, "logout"])->name('login.logo
 Route::resource("/user", UserController::class);
 
 
-use App\Http\Controllers\test\TestController;
+use App\Http\Controllers\Inventory\SupplierController;
 
 Route::resource("/test", TestController::class);
 
-use App\Http\Controllers\test\AdminTestController;
+use App\Http\Controllers\Transaction\THeaderController;
+use App\Http\Controllers\ContentManagementSystemController;
 
 Route::prefix("admin")->group(function(){
     Route::get("/", [AdminTestController::class, "landing"])->name("admin-rework.index");
@@ -93,5 +94,8 @@ Route::prefix("admin")->group(function(){
     Route::post('/edit/unit/', [AdminTestController::class, 'saveUnit'])->name('admin-rework.save.unit');
     Route::get('/delete/unit/{id}', [AdminTestController::class, 'deleteUnit'])->name('admin-rework.delete.unit');
 
+    Route::get("/cms", [AdminTestController::class, 'cms'])->name("admin-rework.cms");
+
+    Route::post("/cms/{id}", [ContentManagementSystemController::class, "add"])->name("cms.update");
 });
 

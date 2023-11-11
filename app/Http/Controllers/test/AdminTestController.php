@@ -12,6 +12,7 @@ use App\Models\Inventory\Product;
 use App\Models\Inventory\Category;
 use App\Models\Inventory\Supplier;
 use App\Http\Controllers\Controller;
+use App\Models\Content\ContentManagementSystem;
 
 class AdminTestController extends Controller
 {
@@ -28,6 +29,7 @@ class AdminTestController extends Controller
             ["Supplier", "truck-field"],
             ["POS", "money-bill"],
             ["User", "user"],
+            ["CMS", "bookmark"]
         ]);
 
         request()->session()->put('active', "dashboard");
@@ -193,5 +195,32 @@ class AdminTestController extends Controller
         $unit->delete();
 
         return redirect()->back();
+    }
+
+    function cms(){
+        request()->session()->put("active", "cms");
+
+        // get header
+        $header = ContentManagementSystem::where("place", "HEADER")->first();
+
+        // get products
+        $products = ContentManagementSystem::all()->where("place", "PRODUCT");
+
+        // get review
+        $review = ContentManagementSystem::where("place", "REVIEW")->first();
+
+        // get quality
+        $qualities = ContentManagementSystem::all()->where("place", "QUALITY");
+
+        // get instagram
+        $instagram = ContentManagementSystem::all()->where("place", "INSTAGRAM");
+
+        return view("admin-rework.cms.index", compact(
+            "header",
+            "products",
+            "review",
+            "qualities",
+            "instagram"
+        ));
     }
 }

@@ -11,10 +11,14 @@ class ContentManagementSystem extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table_name = "cms";
-
     // this is when the image is not from the product
     protected $img;
+
+    // protected header name
+    protected $header;
+
+    // this is when the things needed description
+    protected $description;
 
     // this is for the product
     protected $product_id;

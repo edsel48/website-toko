@@ -13,12 +13,19 @@ class CreateContentManagementSystemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cms', function (Blueprint $table) {
+        Schema::create('content_management_systems', function (Blueprint $table) {
             $table->id();
+
             $table->string("img")->nullable();
+
             $table->integer("product_id")->nullable();
+
+            $table->string("header")->nullable();
+            $table->string("description")->nullable();
+
             $table->enum("place", ["HEADER", "PRODUCT", "REVIEW", "QUALITY", "INSTAGRAM"]);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

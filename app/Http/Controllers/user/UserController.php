@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Inventory\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Content\ContentManagementSystem;
 
 class UserController extends Controller
 {
@@ -18,8 +19,12 @@ class UserController extends Controller
     public function index()
     {
         $products = Product::all();
+        $header = ContentManagementSystem::where("place", "HEADER")->first();
+        $review = ContentManagementSystem::where("place", "REVIEW")->first();
+        $qualities = ContentManagementSystem::all()->where("place", "QUALITY");
+        $instagram = ContentManagementSystem::all()->where("place", "INSTAGRAM");
 
-        return view("User.index", compact("products"));
+        return view("User.index", compact("products", "header", "review", "qualities", "instagram"));
     }
 
     public function login()
