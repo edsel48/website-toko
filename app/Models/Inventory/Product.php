@@ -9,6 +9,7 @@ use App\Models\Inventory\Category;
 use App\Models\Inventory\Supplier;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Content\ContentManagementSystem;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -48,5 +49,10 @@ class Product extends Model
     public function unit(): HasMany
     {
         return $this->hasMany(Unit::class, "product_id");
+    }
+
+    public function cms(): HasMany
+    {
+        return $this->hasMany(ContentManagementSystem::class, "product_id");
     }
 }

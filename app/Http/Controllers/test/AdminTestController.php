@@ -11,6 +11,7 @@ use App\Models\Inventory\Promo;
 use App\Models\Inventory\Product;
 use App\Models\Inventory\Category;
 use App\Models\Inventory\Supplier;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Content\ContentManagementSystem;
 
@@ -200,6 +201,9 @@ class AdminTestController extends Controller
     function cms(){
         request()->session()->put("active", "cms");
 
+        // get all products
+        $allProducts = DB::select("SELECT * FROM products WHERE id not in (SELECT product_id FROM content_management_systems WHERE place = 'PRODUCT')");
+
         // get header
         $header = ContentManagementSystem::where("place", "HEADER")->first();
 
@@ -220,7 +224,8 @@ class AdminTestController extends Controller
             "products",
             "review",
             "qualities",
-            "instagram"
+            "instagram",
+            "allProducts"
         ));
     }
 }

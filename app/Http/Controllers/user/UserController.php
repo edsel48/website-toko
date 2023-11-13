@@ -18,7 +18,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = [];
+        $data = ContentManagementSystem::all()->where("place", "PRODUCT");
+
+        foreach($data as $d){
+            $products[] = $d->product;
+        }
+
         $header = ContentManagementSystem::where("place", "HEADER")->first();
         $review = ContentManagementSystem::where("place", "REVIEW")->first();
         $qualities = ContentManagementSystem::all()->where("place", "QUALITY");

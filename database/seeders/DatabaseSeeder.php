@@ -119,7 +119,7 @@ class DatabaseSeeder extends Seeder
         $size->save();
 
         // create bulk products
-        for($i = 2; $i <= 4; $i++){
+        for($i = 2; $i <= 6; $i++){
             $product = new Product;
             $product->name = "product-" . $i;
             $product->description = "description-" . $i;

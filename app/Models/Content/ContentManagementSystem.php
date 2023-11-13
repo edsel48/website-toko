@@ -2,9 +2,13 @@
 
 namespace App\Models\Content;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Inventory\Product;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ContentManagementSystem extends Model
 {
@@ -25,4 +29,9 @@ class ContentManagementSystem extends Model
 
     // this is the checker for the cms
     protected $place;
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
