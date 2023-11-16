@@ -90,6 +90,10 @@ Route::prefix("admin")->group(function(){
     Route::get("/unit", [AdminTestController::class, "unit"])->name("admin-rework.unit");
     Route::get("/cart", [AdminTestController::class, "index"])->name("admin-rework.cart");
     Route::get("/user", [AdminTestController::class, "user"])->name("admin-rework.user");
+    Route::get("/prm", [AdminTestController::class, "prm"])->name("admin-rework.prm");
+
+    Route::post("/prm", [AdminTestController::class, "predict"])->name("admin-rework.prm.predict");
+
 
     Route::get("/upgrade/{id}", [AdminTestController::class, "upgrade"])->name("admin-rework.upgrade");
 
@@ -100,5 +104,6 @@ Route::prefix("admin")->group(function(){
     Route::get("/cms", [AdminTestController::class, 'cms'])->name("admin-rework.cms");
 
     Route::post("/cms/{id}", [ContentManagementSystemController::class, "update"])->name("cms.update");
+
 });
 

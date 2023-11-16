@@ -13,6 +13,7 @@ use App\Models\Inventory\Category;
 use App\Models\Inventory\Supplier;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 use App\Models\Content\ContentManagementSystem;
 
 class AdminTestController extends Controller
@@ -30,7 +31,8 @@ class AdminTestController extends Controller
             ["Supplier", "truck-field"],
             ["POS", "money-bill"],
             ["User", "user"],
-            ["CMS", "bookmark"]
+            ["CMS", "bookmark"],
+            ["PRM", "chart-simple"]
         ]);
 
         request()->session()->put('active', "dashboard");
@@ -198,6 +200,61 @@ class AdminTestController extends Controller
         return redirect()->back();
     }
 
+    function index_prm(){
+
+    }
+
+    function predict(){
+
+        // todo : Change ARR into real actual data
+        $arr = explode(" ", request()->data);
+        $start = request()->start;
+        $end = request()->end;
+
+        $promise = Http::async()->post("http://127.0.0.1:7373/predict/arima",[
+            "start" => $start,
+            "end" => $end,
+            "sold_data" => $arr
+        ])->then(function ($response){
+            return $response->json();
+        });
+
+        $arima = ($promise->wait());
+
+
+        $lr = Http::async()->post("http://127.0.0.1:7373/predict/linear-regression",[
+            "start" => $start,
+            "end" => $end,
+            "sold_data" => $arr
+        ])->then(function ($response){
+            return $response->json();
+        });
+
+        $lr = $lr->wait();
+
+        $svr = Http::async()->post("http://127.0.0.1:7373/predict/svr",[
+            "start" => $start,
+            "end" => $end,
+            "sold_data" => $arr
+        ])->then(function ($response){
+            return $response->json();
+        });
+
+        $svr = $svr->wait();
+
+        return view("admin-rework.prm.index", compact("arima", "lr", "svr"));
+    }
+
+    function prm(){
+        request()->session()->put("active", "prm");
+
+        $arima = [];
+        $lr = [];
+        $svr = [];
+
+        return view("admin-rework.prm.index", compact("arima", "lr", "svr"));
+    }
+
     function cms(){
         request()->session()->put("active", "cms");
 
@@ -228,4 +285,5 @@ class AdminTestController extends Controller
             "allProducts"
         ));
     }
+
 }

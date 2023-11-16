@@ -17,3 +17,21 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+
+Artisan::command("prepare", function() {
+
+    Artisan::call("migrate:fresh --seed");
+    $this->comment("Successfully Seeded and Ready To Use");
+
+})->purpose("Making Sure Everything is ready");
+
+Artisan::command("run-fresh", function() {
+    // clearing the database and migrating
+    Artisan::call("migrate:fresh --seed");
+    $this->comment("Successfully Seeded and Ready To Use");
+    $this->comment("Now Running on port 8000");
+
+    // calling serve
+    Artisan::call("serve");
+});

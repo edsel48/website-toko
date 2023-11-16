@@ -31,7 +31,6 @@
         <div class="font-bold text-4xl text-primary-1 item-start my-8">
             Product Kami
         </div>
-        <!-- TODO: CMS PRODUCT PART (START) -->
         <div class="flex gap-10 w-full flex-wrap justify-between px-8">
             @foreach ($products as $product)
             <x-product.product-card name="{{$product->name}}" price="{{$product->unit[0]->price}}"
@@ -40,7 +39,6 @@
         </div>
     </div>
     <div class="reviews p-14 flex flex-col justify-center items-center gap-5">
-        <!-- TODO: CMS REVIEW PART (START) -->
         <div class="review text-lg text-center">
             <span>"</span> {{ $review->description }}
             <span>"</span>
@@ -60,7 +58,6 @@
         </div>
     </div>
     <div class="flex flex-col items-center gap-16 h-screen">
-        <!-- TODO: CMS QUALITY PART (START) -->
         <div class="text-4xl text-primary-1 font-bold">
             Quality Without Promise
         </div>
@@ -84,7 +81,6 @@
 
     </div>
     <div class="my-10 text-center h-screen">
-        <!-- TODO: CMS INSTAGRAM PART (START) -->
 
         <div class="text-4xl text-primary-1 font-bold my-10">
             Our Instagram
