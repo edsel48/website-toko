@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\test;
 
 use App\Models\Auth\User;
+use App\Charts\ArimaChart;
 use App\Models\Pos\THeader;
 use Illuminate\Http\Request;
 use App\Models\Inventory\Size;
@@ -14,6 +15,8 @@ use App\Models\Inventory\Supplier;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
+use ArielMejiaDev\LarapexCharts\LineChart;
+use ArielMejiaDev\LarapexCharts\LarapexChart;
 use App\Models\Content\ContentManagementSystem;
 
 class AdminTestController extends Controller
@@ -200,13 +203,7 @@ class AdminTestController extends Controller
         return redirect()->back();
     }
 
-    function index_prm(){
-
-    }
-
     function predict(){
-
-        // todo : Change ARR into real actual data
         $arr = explode(" ", request()->data);
         $start = request()->start;
         $end = request()->end;
@@ -242,7 +239,25 @@ class AdminTestController extends Controller
 
         $svr = $svr->wait();
 
-        return view("admin-rework.prm.index", compact("arima", "lr", "svr"));
+        $dates = [];
+
+        $pred_arima = [];
+        $pred_lr = [];
+        $pred_svr = [];
+
+        $index = 0;
+
+
+        $actual = array_slice($arr, $start-1, $end - $start + 1);
+
+        for($i = 1; $i <= count($arr); $i++){
+            $dates[] = "Date " . $i;
+        }
+
+        $chart = new ArimaChart(new LarapexChart, $actual, $arima["predicted"], $lr["predicted"], $svr["predicted"], $dates);
+        $chart = $chart->build();
+
+        return view("admin-rework.prm.index", compact("arima", "lr", "svr", "chart"));
     }
 
     function prm(){
@@ -251,8 +266,23 @@ class AdminTestController extends Controller
         $arima = [];
         $lr = [];
         $svr = [];
+        $actual = [];
 
-        return view("admin-rework.prm.index", compact("arima", "lr", "svr"));
+        $dates = [];
+
+        for($i = 1; $i <= 12; $i++){
+            $arima[] = $i;
+            $lr[] = $i + 3 * $i;
+            $svr[] = $i + 5 * $i;
+            $actual[] = $i + 10 * $i;
+
+            $dates[] = "date" . $i;
+        }
+
+        $chart = new ArimaChart(new LarapexChart, $actual, $arima, $lr, $svr, $dates);
+        $chart = $chart->build();
+
+        return view("admin-rework.prm.index", compact("arima", "lr", "svr", "chart"));
     }
 
     function cms(){
